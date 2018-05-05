@@ -1,6 +1,6 @@
 package Capa_Servicios;
 
-import Capa_Negocio.sop_rmi.administradorImpl;
+import Capa_Negocio.sop_rmi.administradorGUImpl;
 import Capa_Negocio.sop_rmi.gestionUsuariosImpl;
 
 import java.rmi.RemoteException;
@@ -12,7 +12,7 @@ public class Servidor {
         int numPuertoRMIRegistry = Integer.parseInt(args[1]);
 
         gestionUsuariosImpl objRemoto = new gestionUsuariosImpl();
-        administradorImpl objRemotoAdminGUI = new administradorImpl();
+        administradorGUImpl objRemotoAdminGUI = new administradorGUImpl();
 
         try {
             UtilidadesRegistroS.arrancarNS(numPuertoRMIRegistry);

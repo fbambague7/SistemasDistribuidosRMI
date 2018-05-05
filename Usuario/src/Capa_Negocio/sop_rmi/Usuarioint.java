@@ -3,25 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Capa_Negocio;
+package Capa_Negocio.sop_rmi;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 
 /**
  *
- * @author JULIAN
+ * @author USUARIO
  */
-public class Usuarioint {
-
-    /**
-     * @param args the command line arguments
-     */
-    public interface UsuarioInt extends Remote{
-    public boolean solicitarAcceso(String codigo, String clave, String Area) throws RemoteException;
-    
-
-}
-
+public interface UsuarioInt  extends Remote{
+    public int solicitarAcceso(String codigo, String clave, String Area) throws RemoteException;
     
 }

@@ -10,6 +10,9 @@ public class AdministradorDTO implements Serializable{
     private String login;
     private String clave;
 
+    public AdministradorDTO() {
+    }
+    
     public AdministradorDTO(String login, String clave) {
         this.login = login;
         this.clave = clave;

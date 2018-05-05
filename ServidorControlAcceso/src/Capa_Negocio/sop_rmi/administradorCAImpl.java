@@ -2,17 +2,19 @@ package Capa_Negocio.sop_rmi;
 
 import Capa_Acceso.Archivo;
 import Capa_Negocio.clasesDTO.AdministradorDTO;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
-
-import java.io.*;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import Capa_Negocio.sop_rmi.administradorCAint;
 
-public class administradorImpl extends UnicastRemoteObject implements administradorint {
+public class administradorCAImpl extends UnicastRemoteObject implements administradorCAint {
 
     private Archivo archivo;
 
-    public administradorImpl() throws RemoteException {
+    public administradorCAImpl() throws RemoteException {
         super();
         archivo = new Archivo();
     }
