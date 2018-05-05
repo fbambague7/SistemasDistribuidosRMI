@@ -24,7 +24,6 @@ public class administradorCAImpl extends UnicastRemoteObject implements administ
         System.out.println("Invocando iniciarSesion()...");
         boolean acceso = false;
 
-
         System.out.println("Nueva Instancia de Archivo()");
         File file = new File(".");
         System.out.println(file.getAbsolutePath());
@@ -57,5 +56,5 @@ public class administradorCAImpl extends UnicastRemoteObject implements administ
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-
+    
 }

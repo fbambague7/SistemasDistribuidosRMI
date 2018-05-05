@@ -4,5 +4,5 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 
 public interface CallbackInt extends Remote {
-    public void notificarIngresoUsuario()  throws RemoteException;
+    public void notificarIngresoUsuario(String rol, String nombres)  throws RemoteException;
 }

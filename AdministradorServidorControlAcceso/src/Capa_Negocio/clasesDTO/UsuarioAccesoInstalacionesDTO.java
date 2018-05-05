@@ -10,7 +10,7 @@ public class UsuarioAccesoInstalacionesDTO implements Serializable{
     private String codigo;
     private String horaEntrada;
     private String fechaEntrada;
-
+    
     public UsuarioAccesoInstalacionesDTO(String codigo, String horaEntrada, String fechaEntrada) {
         this.codigo = codigo;
         this.horaEntrada = horaEntrada;

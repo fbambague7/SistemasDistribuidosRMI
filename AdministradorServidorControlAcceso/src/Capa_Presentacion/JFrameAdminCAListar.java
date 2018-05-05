@@ -232,16 +232,15 @@ public class JFrameAdminCAListar extends javax.swing.JFrame {
         
     }
 
-    /*
+    
     public void iniciar() {
-        this.lblCal1.setVisible(false);
-        this.lblCal2.setVisible(false);
-        this.lblCal3.setVisible(false);
-        this.lblCalExp.setVisible(false);
-        this.txtArea.setVisible(false);
-        this.Solicitar.setVisible(false);
+        /*
+        while(true){
+            nuevo.objRemoto.notificar(rol, nombre);
+        }
+        */
     }
-    */
+    
 
     /**
      * @param args the command line arguments

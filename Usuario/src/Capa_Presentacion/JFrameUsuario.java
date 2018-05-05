@@ -209,6 +209,7 @@ public class JFrameUsuario extends javax.swing.JFrame {
             if (indAcceso==3){
                 //Traer la informacion desde el control
                 JOptionPane.showMessageDialog(null, "¡Acceso Al area "+areatxt+" concedida");
+                objRemoto.notificar("rol", "nombre");
             }
             
         } catch (RemoteException ex) {

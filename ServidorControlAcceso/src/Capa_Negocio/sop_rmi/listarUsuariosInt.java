@@ -6,6 +6,9 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 public interface listarUsuariosInt extends Remote {
-    public ArrayList<UsuarioAccesoInstalacionesDTO> listarUsuarios() throws RemoteException;
+    //public ArrayList<UsuarioAccesoInstalacionesDTO> listarUsuarios() throws RemoteException;
+    
+    public ArrayList<UsuarioAccesoInstalacionesDTO> listarUsuariosAcceso() throws RemoteException;
+    public ArrayList<UsuarioAccesoInstalacionesDTO> listarUsuariosNoAcceso() throws RemoteException;
 }
 

@@ -11,11 +11,7 @@ public class CallbackImpl extends UnicastRemoteObject implements CallbackInt {
     }
 
     @Override
-    public void notificarIngresoUsuario() throws RemoteException {
-        /*
-           TODO: Implementar la notificacion al administrador que un usuario a ingresado.
-           (msg: rol, nombres, apellidos)
-         */
-
+    public void notificarIngresoUsuario(String rol, String nombres) throws RemoteException {
+        System.out.println("Rol: "+rol+" Nombres: "+nombres);
     }
 }
