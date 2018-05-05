@@ -12,13 +12,16 @@ import java.rmi.server.UnicastRemoteObject;
 public class UsuarioImpl extends UnicastRemoteObject implements UsuarioInt {
     
     private CallbackInt Callback;
+    private consultarUsuariosInt consultar;
 
     protected UsuarioImpl() throws RemoteException {
     }
 
     @Override
-    public boolean solicitarAcceso(String codigo, String clave, String Area) throws RemoteException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public int solicitarAcceso(String codigo, String clave, String Area) throws RemoteException {
+        int indAcceso = 0;
+        consultar.esUsuarioRegistrado(codigo);
+        return indAcceso;                
     }
 
     @Override

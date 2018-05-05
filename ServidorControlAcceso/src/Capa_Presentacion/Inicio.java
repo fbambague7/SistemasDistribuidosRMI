@@ -11,7 +11,6 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author Alvaro Lasso
  */
 public class Inicio extends javax.swing.JFrame {
 
@@ -125,9 +124,13 @@ public class Inicio extends javax.swing.JFrame {
         
         try
         {  
-           //Admin 
+           //Usuario
            UtilidadesRegistroS.arrancarNS(numPuertoRMIRegistry);
-           UtilidadesRegistroS.RegistrarObjetoRemoto(objRemoto, direccionIpRMIRegistry, numPuertoRMIRegistry, "ObjRemoto");           
+           UtilidadesRegistroS.RegistrarObjetoRemoto(objRemoto, direccionIpRMIRegistry, numPuertoRMIRegistry, "objRemotoUsuario");           
+           
+           //Usuario
+           UtilidadesRegistroS.arrancarNS(numPuertoRMIRegistry);
+           UtilidadesRegistroS.RegistrarObjetoRemoto(objRemoto, direccionIpRMIRegistry, numPuertoRMIRegistry, "objRemotoAdminCA");           
            
            //Listar
            UtilidadesRegistroS.arrancarNS(numPuertoRMIRegistry);

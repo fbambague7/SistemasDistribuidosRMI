@@ -13,7 +13,7 @@ public class Inicio extends javax.swing.JFrame {
      * Creates new form Inicio
      */
     
-    public static UsuarioInt objRemoto;
+    public static UsuarioInt objRemotoUsuario;
     
     public Inicio() {
         
@@ -105,10 +105,10 @@ public class Inicio extends javax.swing.JFrame {
          numPuertoRMIRegistry = (Integer.parseInt(this.NumPuerto.getText()));
          direccionIpRMIRegistry = this.DireccionIp.getText();
          
-        objRemoto = (UsuarioInt) UtilidadesRegistroC.ObtenerObjRemoto(numPuertoRMIRegistry, direccionIpRMIRegistry, "ObjRemoto");
+        objRemotoUsuario = (UsuarioInt) UtilidadesRegistroC.ObtenerObjRemoto(numPuertoRMIRegistry, direccionIpRMIRegistry, "objRemotoUsuario");
           
          
-        JFrameUsuario ob1 = new JFrameUsuario(objRemoto);
+        JFrameUsuario ob1 = new JFrameUsuario(objRemotoUsuario);
         ob1.setVisible(true);
         dispose();
     }//GEN-LAST:event_btnConectarActionPerformed

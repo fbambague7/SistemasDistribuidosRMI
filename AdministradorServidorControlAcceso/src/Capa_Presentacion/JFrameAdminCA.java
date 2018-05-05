@@ -12,7 +12,7 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import Capa_Negocio.sop_rmi.*;
-import static Capa_Presentacion.Inicio.objRemoto;
+import static Capa_Presentacion.Inicio.*;
 
 /**
  *
@@ -23,13 +23,13 @@ public class JFrameAdminCA extends javax.swing.JFrame {
     /**
      * Creates new form JFrameDocente
      */
-    public static administradorCAint objRemoto;
+    public static administradorCAint objRemotoAdminCA;
     public static listarUsuariosInt objRemotoListar;
 
     private static Inicio nuevo = new Inicio();
 
     public JFrameAdminCA(administradorCAint objRemoto) {
-        this.objRemoto = objRemoto;
+        this.objRemotoAdminCA = objRemoto;
         initComponents();
         //iniciar();
 
@@ -165,7 +165,7 @@ public class JFrameAdminCA extends javax.swing.JFrame {
             clave = this.txtClave.getText();
 
             boolean indAcceso;
-            indAcceso = objRemoto.loginAdministrador(login, clave);
+            indAcceso = objRemotoAdminCA.loginAdministrador(login, clave);
 
             if (indAcceso == false) {
                 JOptionPane.showMessageDialog(null, "¡Login o Password Incorrectos!");

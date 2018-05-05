@@ -13,7 +13,7 @@ public class Inicio extends javax.swing.JFrame {
      * Creates new form Inicio
      */
     
-    public static administradorCAint objRemoto;
+    public static administradorCAint objRemotoAdminCA;
     public static listarUsuariosInt objRemotoListar;
     //public static CallbackInt objRemotoCallback;
     
@@ -108,7 +108,7 @@ public class Inicio extends javax.swing.JFrame {
         numPuertoRMIRegistry = (Integer.parseInt(this.NumPuerto.getText()));
         direccionIpRMIRegistry = this.DireccionIp.getText();
          
-        objRemoto = (administradorCAint) UtilidadesRegistroC.ObtenerObjRemoto(numPuertoRMIRegistry, direccionIpRMIRegistry, "ObjRemoto");
+        objRemotoAdminCA = (administradorCAint) UtilidadesRegistroC.ObtenerObjRemoto(numPuertoRMIRegistry, direccionIpRMIRegistry, "objRemotoAdminCA");
         
         
         //objeto remoto Interfas Listar
@@ -119,7 +119,7 @@ public class Inicio extends javax.swing.JFrame {
         //objRemotoCallback = (CallbackInt) UtilidadesRegistroC.ObtenerObjRemoto(numPuertoRMIRegistry, direccionIpRMIRegistry, "ObjRemotoCallback");
           
          
-        JFrameAdminCA ob1 = new JFrameAdminCA(objRemoto);
+        JFrameAdminCA ob1 = new JFrameAdminCA(objRemotoAdminCA);
         ob1.setVisible(true);
         dispose();
     }//GEN-LAST:event_btnConectarActionPerformed

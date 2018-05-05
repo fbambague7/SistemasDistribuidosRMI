@@ -21,7 +21,7 @@ import Capa_Negocio.sop_rmi.*;
 public class JFrameUsuario extends javax.swing.JFrame {
 
     /**
-     * Creates new form JFrameDocente
+     * 
      */
     public static UsuarioInt objRemoto;
 
