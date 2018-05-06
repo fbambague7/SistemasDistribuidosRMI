@@ -70,7 +70,7 @@ public class UsuarioDAO {
         return modificado;
     }
 
-    public boolean consultarUsuario(String codigo, String clave, String area){
+    public UsuarioDTO consultarUsuario(String codigo, String clave, String area){
         boolean existe;
 
         ruta+=codigo;
@@ -82,7 +82,8 @@ public class UsuarioDAO {
             System.out.println("Usuario ha sido encontrado");
         else
             System.out.println("Ususario no ha sido encontrado");
-        return existe;
+        return null;
+        
     }
 
     public boolean eliminarUsuario(String codigo){
