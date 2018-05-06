@@ -5,7 +5,7 @@
  */
 package Capa_Presentacion;
 
-import Capa_Negocio.clsDTO.EnumArea;
+import Capa_Negocio.EnumArea;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.logging.Level;

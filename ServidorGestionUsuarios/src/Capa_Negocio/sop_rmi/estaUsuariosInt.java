@@ -5,6 +5,6 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 import Capa_Negocio.clasesDTO.UsuarioDTO;
 
-public interface consultarUsuariosInt extends Remote {
+public interface estaUsuariosInt extends Remote {
     public boolean esUsuarioRegistrado(String codigo) throws RemoteException;
 }

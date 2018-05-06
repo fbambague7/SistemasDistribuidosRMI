@@ -1,4 +1,4 @@
-package servicios;
+package Capa_Servicios;
 
 import java.net.MalformedURLException;
 import java.rmi.Naming;

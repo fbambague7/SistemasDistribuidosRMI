@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Capa_Negocio.clsDTO;
+package Capa_Negocio.clasesDTO;
 
+import Capa_Negocio.*;
 import java.io.Serializable;
 
 /**
@@ -15,12 +16,14 @@ public class UsuarioDTO implements Serializable{
    
    private String nombres;
    private String codigo;
+   private String clave;
    private EnumArea area;
    private EnumRol rol;
 
-    public UsuarioDTO(String nombres, String codigo, EnumArea area, EnumRol rol) {
+    public UsuarioDTO(String nombres, String codigo, String clave, EnumArea area, EnumRol rol) {
         this.nombres = nombres;
         this.codigo = codigo;
+        this.clave = clave;
         this.area = area;
         this.rol = rol;
     }
@@ -41,6 +44,14 @@ public class UsuarioDTO implements Serializable{
         this.codigo = codigo;
     }
 
+    public String getClave() {
+        return clave;
+    }
+
+    public void setClave(String clave) {
+        this.clave = clave;
+    }
+    
     public EnumArea getArea() {
         return area;
     }

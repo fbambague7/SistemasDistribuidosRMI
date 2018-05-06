@@ -7,9 +7,9 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import Capa_Negocio.clasesDTO.UsuarioDTO;
 
-public class consultarUsuariosImpl extends UnicastRemoteObject implements consultarUsuariosInt {
+public class estaUsuariosImpl extends UnicastRemoteObject implements estaUsuariosInt {
 
-    public consultarUsuariosImpl() throws RemoteException {
+    public estaUsuariosImpl() throws RemoteException {
         super();
     }
 
