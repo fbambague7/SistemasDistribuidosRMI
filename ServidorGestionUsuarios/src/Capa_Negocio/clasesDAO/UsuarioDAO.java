@@ -22,14 +22,14 @@ public class UsuarioDAO {
         archivo = new Archivo();
     }
 
-    public boolean registrarUsuario(UsuarioDTO objUsuarios){
+    public boolean registrarUsuario(UsuarioDTO usuario){
         boolean registrado = false;
 
-        ruta+=objUsuarios.getCodigo();
+        ruta+=usuario.getCodigo();
         ruta+=".txt";
 
-        String datos= objUsuarios.getCodigo()+";"+objUsuarios.getNombres()+";"
-                +objUsuarios.getArea()+";"+objUsuarios.getRol();
+        String datos= usuario.getCodigo()+"_"+usuario.getNombres()+"_"
+                +usuario.getRol()+"_"+usuario.getClave()+"_"+usuario.getArea()+"_";
         try {
             archivo.abrirArchivo(ruta,true,true);
             archivo.escribirArchivo(datos);
@@ -49,14 +49,14 @@ public class UsuarioDAO {
         return registrado;
     }
 
-    public boolean modificarUsuario (UsuarioDTO objUsuarios){
+    public boolean modificarUsuario (UsuarioDTO usuario){
         boolean modificado = false;
 
-        ruta+=objUsuarios.getCodigo();
+        ruta+=usuario.getCodigo();
         ruta+=".txt";
 
-        String datos = objUsuarios.getCodigo()+";"+objUsuarios.getNombres()+";"
-                +objUsuarios.getArea()+";"+objUsuarios.getRol();
+        String datos = usuario.getCodigo()+"_"+usuario.getNombres()+"_"
+                +usuario.getRol()+"_"+usuario.getClave()+"_"+usuario.getArea()+"_";
         try {
             archivo.abrirArchivo(ruta,true,false);
             archivo.escribirArchivo(datos);
@@ -99,5 +99,5 @@ public class UsuarioDAO {
         else
             System.out.println("Usuario no se pudo eliminar");
         return eliminado;
-}
+    }
 }
