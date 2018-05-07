@@ -1,5 +1,9 @@
 package Capa_Negocio.sop_rmi;
 
+import Capa_Negocio.clasesDAO.UsuarioDAO;
+import Capa_Negocio.clasesDTO.EnumArea;
+import Capa_Negocio.clasesDTO.EnumRol;
+import Capa_Negocio.clasesDTO.UsuarioDTO;
 import Capa_Negocio.sop_rmi.UsuarioInt;
 
 import java.rmi.RemoteException;
@@ -11,17 +15,20 @@ import java.rmi.server.UnicastRemoteObject;
  */
 public class UsuarioImpl extends UnicastRemoteObject implements UsuarioInt {
     
+    UsuarioDTO usuarioDTO;
     private CallbackInt Callback;
-    private consultarUsuariosInt consultar;
+    private estaUsuariosInt consultar;
 
     protected UsuarioImpl() throws RemoteException {
+        super();
+        usuarioDTO = new UsuarioDTO();
     }
 
     @Override
-    public int solicitarAcceso(String codigo, String clave, String Area) throws RemoteException {
-        int indAcceso = 0;
-        consultar.esUsuarioRegistrado(codigo);
-        return indAcceso;                
+    public UsuarioDTO solicitarAcceso(String codigo, String clave, String Area) throws RemoteException {
+        usuarioDTO = null;
+        usuarioDTO=consultar.esUsuarioRegistrado(codigo);
+        return usuarioDTO;                
     }
 
     @Override

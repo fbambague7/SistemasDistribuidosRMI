@@ -5,6 +5,7 @@
  */
 package Capa_Presentacion;
 
+import Capa_Negocio.clasesDTO.AdministradorDTO;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -163,9 +164,11 @@ public class JFrameAdminCA extends javax.swing.JFrame {
 
             login = this.txtLog.getText();
             clave = this.txtClave.getText();
+            
+            AdministradorDTO admin=new AdministradorDTO(login, clave);
 
             boolean indAcceso;
-            indAcceso = objRemotoAdminCA.loginAdministrador(login, clave);
+            indAcceso = objRemotoAdminCA.loginAdministrador(admin);
 
             if (indAcceso == false) {
                 JOptionPane.showMessageDialog(null, "¡Login o Password Incorrectos!");

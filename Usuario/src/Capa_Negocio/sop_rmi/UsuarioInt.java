@@ -5,6 +5,7 @@
  */
 package Capa_Negocio.sop_rmi;
 
+import Capa_Negocio.clasesDTO.UsuarioDTO;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 
@@ -13,7 +14,7 @@ import java.rmi.RemoteException;
  * @author USUARIO
  */
 public interface UsuarioInt  extends Remote{
-    public int solicitarAcceso(String codigo, String clave, String Area) throws RemoteException;
+    public UsuarioDTO solicitarAcceso(String codigo, String clave, String Area) throws RemoteException;
     public void notificar(String rol, String nombre)throws RemoteException;
     
 }

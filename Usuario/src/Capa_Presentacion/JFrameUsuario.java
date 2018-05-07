@@ -6,6 +6,7 @@
 package Capa_Presentacion;
 
 import Capa_Negocio.EnumArea;
+import Capa_Negocio.clasesDTO.UsuarioDTO;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -171,13 +172,14 @@ public class JFrameUsuario extends javax.swing.JFrame {
         try {
             String codigo;
             String clave;
-            String areatxt;
-            EnumArea area;
+            String area;
+            //EnumArea area;
             
             codigo = this.txtCod.getText();
             clave = this.txtClave.getText();
-            areatxt = this.txtArea.getText();
+            area = this.txtArea.getText();
             
+            /*
             switch (areatxt) {
                 case "norte":
                     area = EnumArea.norte;
@@ -192,23 +194,20 @@ public class JFrameUsuario extends javax.swing.JFrame {
                     area = EnumArea.oeste;
                     break;
             }
+            */
             
-            int indAcceso;
-            indAcceso = objRemoto.solicitarAcceso(codigo, clave, areatxt);
+            UsuarioDTO usuario;
+            usuario = objRemoto.solicitarAcceso(codigo, clave, area);
             
-            if (indAcceso==1){
+            if (usuario==null){
                 JOptionPane.showMessageDialog(null, "¡Acceso denegado código o clave inválidos, " +
                         "por favor contacte al administrador de la aplicación!");
-            }
-            
-            if (indAcceso==2){
+            }else if (area.equalsIgnoreCase(usuario.getArea().toString())){
                 //Traer la informacion desde el control
-                JOptionPane.showMessageDialog(null, "¡Acceso Al area "+areatxt+" denegada");
-            }
-            
-            if (indAcceso==3){
+                JOptionPane.showMessageDialog(null, "¡Acceso Al area "+area+" denegada");
+            }else if (area.equalsIgnoreCase(usuario.getArea().toString())){
                 //Traer la informacion desde el control
-                JOptionPane.showMessageDialog(null, "¡Acceso Al area "+areatxt+" concedida");
+                JOptionPane.showMessageDialog(null, "¡Acceso Al area "+area+" concedida");
                 objRemoto.notificar("rol", "nombre");
             }
             
