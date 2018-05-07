@@ -42,3 +42,4 @@ public class gestionUsuariosImpl extends UnicastRemoteObject implements gestionU
         return userDAO.eliminarUsuario(codigo);
     }
 }
+
