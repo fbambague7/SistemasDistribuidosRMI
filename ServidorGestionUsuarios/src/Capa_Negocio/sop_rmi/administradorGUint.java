@@ -8,4 +8,4 @@ import java.rmi.RemoteException;
 public interface administradorGUint extends Remote {
     public boolean loginAdministrador(String loginAdmin, String passAdmin) throws RemoteException;
     public boolean modificarAdmin(AdministradorDTO clsAdministradorDTO)throws RemoteException;
-}
+} 
