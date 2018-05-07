@@ -34,7 +34,7 @@ public class AdministradorDAO {
             if (archivo.puedeLeer()){
                 String datos = archivo.leerArchivo();
                 // datos: admin;root
-                String[] partes = datos.split(";");
+                String[] partes = datos.split("_");
                 String login = partes[0];
                 String clave = partes[1];
                 if(login.equals(loginAdmin) &&
@@ -59,7 +59,7 @@ public class AdministradorDAO {
 
         try {
             archivo.abrirArchivo(path,true,false);
-            archivo.escribirArchivo(objAdminGestionUsuarios.getLogin() + ";"
+            archivo.escribirArchivo(objAdminGestionUsuarios.getLogin() + "_"
                     + objAdminGestionUsuarios.getClave());
             archivo.cerrarArchivo();
             modificado = true;
