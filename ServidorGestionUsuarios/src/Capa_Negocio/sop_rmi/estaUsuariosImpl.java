@@ -14,7 +14,7 @@ public class estaUsuariosImpl extends UnicastRemoteObject implements estaUsuario
     }
 
     @Override
-    public boolean esUsuarioRegistrado(String codigo) throws RemoteException {
+    public UsuarioDTO esUsuarioRegistrado(String codigo) throws RemoteException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
