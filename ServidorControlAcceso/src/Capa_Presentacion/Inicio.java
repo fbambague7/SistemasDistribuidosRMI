@@ -1,10 +1,11 @@
 package Capa_Presentacion;
 
-import Capa_Negocio.sop_rmi.CallbackImpl;
+//import Capa_Negocio.sop_rmi.CallbackImpl;
 import Capa_Negocio.sop_rmi.UsuarioImpl;
 import Capa_Negocio.sop_rmi.administradorCAImpl;
 import Capa_Negocio.sop_rmi.estaUsuariosInt;
 import Capa_Negocio.sop_rmi.listarUsuariosImpl;
+import Capa_Servicios.UtilidadesRegistroC;
 import Capa_Servicios.UtilidadesRegistroS;
 import java.rmi.RemoteException;
 import java.util.logging.Level;
@@ -20,7 +21,7 @@ public class Inicio extends javax.swing.JFrame {
      * Creates new form Inicio
      */
     
-    //public static TurnoInt objRemoto;
+    public static estaUsuariosInt objRemotoEsta = null;;
     
     public Inicio() {
         
@@ -28,6 +29,8 @@ public class Inicio extends javax.swing.JFrame {
         
         this.DireccionIp.setText("localhost");
         this.NumPuerto.setText("2020");
+        this.txtDireccion2.setText("localhost");
+        this.txtPuerto2.setText("2021");
         
     }
 
@@ -40,18 +43,22 @@ public class Inicio extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
+        btnConectar = new javax.swing.JButton();
         DireccionIp = new javax.swing.JTextField();
         NumPuerto = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        txtDireccion2 = new javax.swing.JTextField();
+        txtPuerto2 = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButton1.setText("CONECTAR");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnConectar.setText("CONECTAR");
+        btnConectar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnConectarActionPerformed(evt);
             }
         });
 
@@ -65,6 +72,16 @@ public class Inicio extends javax.swing.JFrame {
 
         jLabel2.setText("Puerto");
 
+        txtDireccion2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtDireccion2ActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setText("Direccion ip");
+
+        jLabel4.setText("Puerto");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -74,16 +91,26 @@ public class Inicio extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(47, 47, 47)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2))
-                        .addGap(32, 32, 32)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(DireccionIp, javax.swing.GroupLayout.DEFAULT_SIZE, 71, Short.MAX_VALUE)
-                            .addComponent(NumPuerto)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel1)
+                                    .addComponent(jLabel2))
+                                .addGap(32, 32, 32)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(DireccionIp, javax.swing.GroupLayout.DEFAULT_SIZE, 71, Short.MAX_VALUE)
+                                    .addComponent(NumPuerto)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel4))
+                                .addGap(32, 32, 32)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtDireccion2)
+                                    .addComponent(txtPuerto2, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(110, 110, 110)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(178, Short.MAX_VALUE))
+                        .addGap(111, 111, 111)
+                        .addComponent(btnConectar, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(177, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -96,16 +123,36 @@ public class Inicio extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(NumPuerto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
-                .addGap(84, 84, 84)
-                .addComponent(jButton1)
-                .addContainerGap(98, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtDireccion2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtPuerto2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4))
+                .addGap(34, 34, 34)
+                .addComponent(btnConectar)
+                .addContainerGap(70, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnConectarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConectarActionPerformed
         // TODO add your handling code here:
+        
+        int numPuertoRMIRegistry2 = 0;
+         String direccionIpRMIRegistry2 = "";  
+        
+        numPuertoRMIRegistry2 = (Integer.parseInt(this.txtPuerto2.getText()));
+        direccionIpRMIRegistry2 = this.txtDireccion2.getText();
+         
+        objRemotoEsta = (estaUsuariosInt) UtilidadesRegistroC.ObtenerObjRemoto(numPuertoRMIRegistry2, direccionIpRMIRegistry2, "objRemotoEsta");
+        
+        
+        /*******************************************/
+        
         
         int numPuertoRMIRegistry = 0;
         String direccionIpRMIRegistry = "";  
@@ -115,14 +162,14 @@ public class Inicio extends javax.swing.JFrame {
         UsuarioImpl objRemotoUsuario = null;
         administradorCAImpl objRemotoAdminCA = null;
         listarUsuariosImpl objRemotoListar = null;
-        CallbackImpl objRemotoCallback = null;
-        //estaUsuariosInt objRemotoEsta = null;
+        //CallbackImpl objRemotoCallback = null;
+        
         
         try {
             objRemotoUsuario = new UsuarioImpl();
             objRemotoAdminCA = new administradorCAImpl();
             objRemotoListar = new listarUsuariosImpl();
-            objRemotoCallback = new CallbackImpl();
+            //objRemotoCallback = new CallbackImpl();
         } catch (RemoteException ex) {
             Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -143,7 +190,7 @@ public class Inicio extends javax.swing.JFrame {
            
            //Callback
            //UtilidadesRegistroS.arrancarNS(numPuertoRMIRegistry);
-           UtilidadesRegistroS.RegistrarObjetoRemoto(objRemotoCallback, direccionIpRMIRegistry, numPuertoRMIRegistry, "ObjRemotoCallback");           
+           //UtilidadesRegistroS.RegistrarObjetoRemoto(objRemotoCallback, direccionIpRMIRegistry, numPuertoRMIRegistry, "ObjRemotoCallback");           
       
 	    } catch (Exception e)
         {
@@ -167,11 +214,15 @@ public class Inicio extends javax.swing.JFrame {
        /* JFrameDocenteCatedra ob1 = new JFrameDocenteCatedra();
         ob1.setVisible(true);
         dispose();*/
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnConectarActionPerformed
 
     private void DireccionIpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DireccionIpActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_DireccionIpActionPerformed
+
+    private void txtDireccion2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDireccion2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtDireccion2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -226,8 +277,12 @@ public class Inicio extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField DireccionIp;
     private javax.swing.JTextField NumPuerto;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnConectar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JTextField txtDireccion2;
+    private javax.swing.JTextField txtPuerto2;
     // End of variables declaration//GEN-END:variables
 }

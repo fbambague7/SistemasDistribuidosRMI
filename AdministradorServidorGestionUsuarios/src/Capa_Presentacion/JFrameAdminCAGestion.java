@@ -56,9 +56,7 @@ public class JFrameAdminCAGestion extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         txtNom = new javax.swing.JTextField();
         txtCod = new javax.swing.JTextField();
-        txtrol = new javax.swing.JTextField();
         txtCla = new javax.swing.JTextField();
-        txtArea = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -67,6 +65,8 @@ public class JFrameAdminCAGestion extends javax.swing.JFrame {
         btnGuardar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
         btnMod = new javax.swing.JButton();
+        cbArea = new javax.swing.JComboBox<>();
+        cbrol = new javax.swing.JComboBox<>();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -130,6 +130,20 @@ public class JFrameAdminCAGestion extends javax.swing.JFrame {
             }
         });
 
+        cbArea.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "norte", "sur", "este", "oeste" }));
+        cbArea.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbAreaActionPerformed(evt);
+            }
+        });
+
+        cbrol.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "administrativo", "docente", "estudiante" }));
+        cbrol.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbrolActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -146,25 +160,19 @@ public class JFrameAdminCAGestion extends javax.swing.JFrame {
                                 .addGap(12, 12, 12))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(44, 44, 44)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel6)
+                                    .addComponent(jLabel1))
+                                .addGap(41, 41, 41)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel1)
-                                        .addGap(58, 58, 58)
-                                        .addComponent(txtCod, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel2)
-                                            .addComponent(jLabel4)
-                                            .addComponent(jLabel5)
-                                            .addComponent(jLabel6))
-                                        .addGap(51, 51, 51)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(txtNom, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addComponent(txtrol, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                .addComponent(txtCla, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addComponent(txtArea, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                    .addComponent(txtCod)
+                                    .addComponent(cbArea, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(cbrol, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(txtNom, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtCla))))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(36, 36, 36)
@@ -177,7 +185,7 @@ public class JFrameAdminCAGestion extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(158, 158, 158)
                         .addComponent(jLabel3)))
-                .addContainerGap(60, Short.MAX_VALUE))
+                .addContainerGap(54, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -194,23 +202,23 @@ public class JFrameAdminCAGestion extends javax.swing.JFrame {
                     .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtrol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
+                    .addComponent(jLabel4)
+                    .addComponent(cbrol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtCla, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtArea, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6))
-                .addGap(33, 33, 33)
+                    .addComponent(jLabel6)
+                    .addComponent(cbArea, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(32, 32, 32)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnEliminar)
                     .addComponent(btnGuardar)
                     .addComponent(btnBuscar)
                     .addComponent(btnMod))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
                 .addComponent(btnVolver)
                 .addGap(31, 31, 31))
         );
@@ -223,10 +231,12 @@ public class JFrameAdminCAGestion extends javax.swing.JFrame {
         UsuarioDTO miUsuario = null;
         try {
             miUsuario = nuevo.objRemotoGestion.consultarUsuario(codigo);
-            txtArea.setText(miUsuario.getArea().toString());
+            cbArea.setSelectedItem(miUsuario.getArea().toString());
+            //txtArea.setText(miUsuario.getArea().toString());
             txtCla.setText(miUsuario.getClave());
             txtNom.setText(miUsuario.getNombres());
-            txtrol.setText(miUsuario.getRol().toString());
+            cbrol.setSelectedItem(miUsuario.getRol().toString());
+            //txtrol.setText(miUsuario.getRol().toString());
         } catch (RemoteException ex) {
             Logger.getLogger(JFrameAdminCAGestion.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -256,60 +266,66 @@ public class JFrameAdminCAGestion extends javax.swing.JFrame {
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         boolean indRegistro = false;
+        boolean indCod = false;
         String codigo = txtCod.getText();
         String nombre = txtNom.getText();
-        String roltxt = txtrol.getText();
+        String roltxt = cbrol.getSelectedItem().toString();
         String clave = txtCla.getText();
-        String areatxt = txtArea.getText();
+        String areatxt = cbArea.getSelectedItem().toString();
 
         EnumArea area = null;
         EnumRol rol = null;
 
-        switch (areatxt) {
-            case "norte":
-                area = EnumArea.norte;
-                break;
-            case "sur":
-                area = EnumArea.sur;
-                break;
-            case "este":
-                area = EnumArea.este;
-                break;
-            case "oeste":
-                area = EnumArea.oeste;
-                break;
-        }
+        indCod = validarCodigo(codigo);
 
-        switch (roltxt) {
-            case "administrativo":
-                rol = EnumRol.administrativo;
-                break;
-            case "docente":
-                rol = EnumRol.docente;
-                break;
-            case "estudiante":
-                rol = EnumRol.estudiante;
-                break;
-        }
-
-        usuario = new UsuarioDTO(nombre, codigo, clave, area, rol);
-        try {
-            indRegistro = nuevo.objRemotoGestion.registrarUsuario(usuario);
-        } catch (RemoteException ex) {
-            Logger.getLogger(JFrameAdminCAGestion.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        if (indRegistro == true) {
-            JOptionPane.showMessageDialog(null, "¡Usuario Registrado");
+        if (indCod == false) {
+            JOptionPane.showMessageDialog(null, "¡Login y Password deben estar entre 4 y 8 caracteres!");
         } else {
-            JOptionPane.showMessageDialog(null, "¡Usuario NO Registrado");
+            switch (areatxt) {
+                case "norte":
+                    area = EnumArea.norte;
+                    break;
+                case "sur":
+                    area = EnumArea.sur;
+                    break;
+                case "este":
+                    area = EnumArea.este;
+                    break;
+                case "oeste":
+                    area = EnumArea.oeste;
+                    break;
+            }
+
+            switch (roltxt) {
+                case "administrativo":
+                    rol = EnumRol.administrativo;
+                    break;
+                case "docente":
+                    rol = EnumRol.docente;
+                    break;
+                case "estudiante":
+                    rol = EnumRol.estudiante;
+                    break;
+            }
+
+            usuario = new UsuarioDTO(nombre, codigo, clave, area, rol);
+            try {
+                indRegistro = nuevo.objRemotoGestion.registrarUsuario(usuario);
+            } catch (RemoteException ex) {
+                Logger.getLogger(JFrameAdminCAGestion.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            if (indRegistro == true) {
+                JOptionPane.showMessageDialog(null, "¡Usuario Registrado");
+            } else {
+                JOptionPane.showMessageDialog(null, "¡Usuario NO Registrado");
+            }
+
+            txtCod.setText("");
+            //txtArea.setText("");
+            txtCla.setText("");
+            txtNom.setText("");
+            //txtrol.setText("");
         }
-
-        txtCod.setText("");
-        txtArea.setText("");
-        txtCla.setText("");
-        txtNom.setText("");
-        txtrol.setText("");
-
 
     }//GEN-LAST:event_btnGuardarActionPerformed
 
@@ -329,69 +345,95 @@ public class JFrameAdminCAGestion extends javax.swing.JFrame {
 
         txtCod.setText("");
         txtCod.setText("");
-        txtArea.setText("");
+        //txtArea.setText("");
         txtCla.setText("");
         txtNom.setText("");
-        txtrol.setText("");
+        //txtrol.setText("");
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnModActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModActionPerformed
         boolean indModificar = false;
+        boolean indCod = false;
         String codigo = txtCod.getText();
         String nombre = txtNom.getText();
-        String roltxt = txtrol.getText();
+        String roltxt = cbrol.getSelectedItem().toString();
+        //String roltxt = txtrol.getText();
         String clave = txtCla.getText();
-        String areatxt = txtArea.getText();
+        String areatxt = cbArea.getSelectedItem().toString();
+        //String areatxt = txtArea.getText();
 
         EnumArea area = null;
         EnumRol rol = null;
 
-        switch (areatxt) {
-            case "norte":
-                area = EnumArea.norte;
-                break;
-            case "sur":
-                area = EnumArea.sur;
-                break;
-            case "este":
-                area = EnumArea.este;
-                break;
-            case "oeste":
-                area = EnumArea.oeste;
-                break;
-        }
+        indCod = validarCodigo(codigo);
 
-        switch (roltxt) {
-            case "administrativo":
-                rol = EnumRol.administrativo;
-                break;
-            case "docente":
-                rol = EnumRol.docente;
-                break;
-            case "estudiante":
-                rol = EnumRol.estudiante;
-                break;
-        }
-
-        usuario = new UsuarioDTO(nombre, codigo, clave, area, rol);
-
-        try {
-            indModificar = nuevo.objRemotoGestion.modificarUsuario(usuario);
-        } catch (RemoteException ex) {
-            Logger.getLogger(JFrameAdminCAGestion.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        if (indModificar == true) {
-            JOptionPane.showMessageDialog(null, "¡Usuario Modificado");
+        if (indCod == false) {
+            JOptionPane.showMessageDialog(null, "¡Login y Password deben estar entre 4 y 8 caracteres!");
         } else {
-            JOptionPane.showMessageDialog(null, "¡Usuario NO Modificado");
-        }
 
-        txtCod.setText("");
-        txtArea.setText("");
-        txtCla.setText("");
-        txtNom.setText("");
-        txtrol.setText("");
+            switch (areatxt) {
+                case "norte":
+                    area = EnumArea.norte;
+                    break;
+                case "sur":
+                    area = EnumArea.sur;
+                    break;
+                case "este":
+                    area = EnumArea.este;
+                    break;
+                case "oeste":
+                    area = EnumArea.oeste;
+                    break;
+            }
+
+            switch (roltxt) {
+                case "administrativo":
+                    rol = EnumRol.administrativo;
+                    break;
+                case "docente":
+                    rol = EnumRol.docente;
+                    break;
+                case "estudiante":
+                    rol = EnumRol.estudiante;
+                    break;
+            }
+
+            usuario = new UsuarioDTO(nombre, codigo, clave, area, rol);
+
+            try {
+                indModificar = nuevo.objRemotoGestion.modificarUsuario(usuario);
+            } catch (RemoteException ex) {
+                Logger.getLogger(JFrameAdminCAGestion.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            if (indModificar == true) {
+                JOptionPane.showMessageDialog(null, "¡Usuario Modificado");
+            } else {
+                JOptionPane.showMessageDialog(null, "¡Usuario NO Modificado");
+            }
+
+            txtCod.setText("");
+            //txtArea.setText("");
+            txtCla.setText("");
+            txtNom.setText("");
+            //txtrol.setText("");
+        }
     }//GEN-LAST:event_btnModActionPerformed
+
+    private void cbAreaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbAreaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbAreaActionPerformed
+
+    private void cbrolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbrolActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbrolActionPerformed
+
+    public boolean validarCodigo(String codigo) {
+        boolean validar = false;
+        if (codigo.length() >= 4 && codigo.length() <= 8) {
+            validar = true;
+        }
+        return validar;
+    }
 
     public void iniciar() {
         /*
@@ -1465,6 +1507,8 @@ public class JFrameAdminCAGestion extends javax.swing.JFrame {
     private javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnMod;
     private javax.swing.JButton btnVolver;
+    private javax.swing.JComboBox<String> cbArea;
+    private javax.swing.JComboBox<String> cbrol;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -1473,10 +1517,8 @@ public class JFrameAdminCAGestion extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField txtArea;
     private javax.swing.JTextField txtCla;
     private javax.swing.JTextField txtCod;
     private javax.swing.JTextField txtNom;
-    private javax.swing.JTextField txtrol;
     // End of variables declaration//GEN-END:variables
 }

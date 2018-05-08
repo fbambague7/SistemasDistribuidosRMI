@@ -13,6 +13,8 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import Capa_Negocio.sop_rmi.*;
+import static Capa_Presentacion.Inicio.objRemotoCallback;
+import Capa_Servicios.UtilidadesRegistroC;
 
 /**
  *
@@ -29,12 +31,16 @@ public class JFrameAdminCAListar extends javax.swing.JFrame {
 
     private static Inicio nuevo = new Inicio();
 
-    public JFrameAdminCAListar(/*UsuarioInt objRemoto*/) {
+    public JFrameAdminCAListar(/*UsuarioInt objRemoto*/) throws RemoteException {
         //this.objRemoto = objRemoto;
+        CallbackImpl objRemotoDelLadoAdministrador= new CallbackImpl(this);
+        UtilidadesRegistroC.RegistrarObjetoRemoto(objRemotoDelLadoAdministrador, "localhost", 2020, "objRemotoCallback");
+        //.registrarObremti(objRemotoDelLadoAdministrador);
+        
         initComponents();
         //iniciar();
 
-        //String nombreDireccion = "C:\\Users\\PC-USUARIO\\Documents\\NetBeansProjects\\EjemploFichero\\src\\archivos\\Administrador.txt";//"C:\\Users\\PC-USUARIO\\Desktop\\DocenteCatedra.txt";
+        
 
     }
 
@@ -56,6 +62,7 @@ public class JFrameAdminCAListar extends javax.swing.JFrame {
         lblCalExp = new javax.swing.JLabel();
         btnNoApr = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
+        lblMensaje = new javax.swing.JLabel();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -110,19 +117,12 @@ public class JFrameAdminCAListar extends javax.swing.JFrame {
 
         jLabel4.setText("ADMINISTRADOR CONTROL ACCESO");
 
+        lblMensaje.setText("-");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btnVolver)
-                        .addGap(58, 58, 58))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(lblCalExp)
-                        .addGap(308, 308, 308))))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -137,7 +137,20 @@ public class JFrameAdminCAListar extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(267, 267, 267)
                         .addComponent(jLabel4)))
-                .addContainerGap(64, Short.MAX_VALUE))
+                .addContainerGap(83, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(lblCalExp)
+                        .addGap(308, 308, 308))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(btnVolver)
+                        .addGap(51, 51, 51))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(328, 328, 328)
+                .addComponent(lblMensaje)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -153,9 +166,11 @@ public class JFrameAdminCAListar extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(btnNoApr))
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(64, 64, 64)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
+                .addComponent(lblMensaje)
+                .addGap(15, 15, 15)
                 .addComponent(btnVolver)
-                .addContainerGap(11, Short.MAX_VALUE))
+                .addGap(27, 27, 27))
         );
 
         pack();
@@ -171,7 +186,7 @@ public class JFrameAdminCAListar extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_btnAprobadoActionPerformed
-
+ 
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
         // TODO add your handling code here:
         Inicio ob0 = new Inicio();
@@ -242,6 +257,12 @@ public class JFrameAdminCAListar extends javax.swing.JFrame {
         */
     }
     
+     public void notificar(String mensaje)
+    {
+        System.out.println(mensaje);
+        JOptionPane.showMessageDialog(null, mensaje);
+        lblMensaje.setText(mensaje);
+    }    
 
     /**
      * @param args the command line arguments
@@ -784,7 +805,11 @@ public class JFrameAdminCAListar extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new JFrameAdminCAListar(/*null*/).setVisible(true);
+                try {
+                    new JFrameAdminCAListar(/*null*/).setVisible(true);
+                } catch (RemoteException ex) {
+                    Logger.getLogger(JFrameAdminCAListar.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
@@ -798,6 +823,7 @@ public class JFrameAdminCAListar extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable jTable1;
     private javax.swing.JLabel lblCalExp;
+    private javax.swing.JLabel lblMensaje;
     private javax.swing.JTable tblInfo;
     // End of variables declaration//GEN-END:variables
 }

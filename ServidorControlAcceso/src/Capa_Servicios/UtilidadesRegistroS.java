@@ -38,7 +38,7 @@ public class UtilidadesRegistroS {
             System.out.println("Se realizo el registro con la direccion: " + UrlRegistro);
             System.out.println("Esperando peticiones ...");
         } catch (RemoteException e) {
-            System.out.println("Error en el registro del objeto remoto");
+            System.out.println("Error en el registro del objeto remoto: " +  e);
             e.printStackTrace();
         } catch (MalformedURLException e) {
             System.out.println("Error url inválida");

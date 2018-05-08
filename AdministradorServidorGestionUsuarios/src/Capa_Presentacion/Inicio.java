@@ -22,7 +22,7 @@ public class Inicio extends javax.swing.JFrame {
         initComponents();
         
         this.DireccionIp.setText("localhost");
-        this.NumPuerto.setText("2020");
+        this.NumPuerto.setText("2021");
     }
 
     /**
@@ -115,7 +115,7 @@ public class Inicio extends javax.swing.JFrame {
         //direccionIpRMIRegistry = this.DireccionIp.getText();
         objRemotoGestion = (gestionUsuariosInt) UtilidadesRegistroC.obtenerObjRemoto(numPuertoRMIRegistry, direccionIpRMIRegistry, "objRemotoGestion");
         
-        //objRemotoCallback = (CallbackInt) UtilidadesRegistroC.ObtenerObjRemoto(numPuertoRMIRegistry, direccionIpRMIRegistry, "ObjRemotoCallback");
+        
           
          
         JFrameAdminGU ob1 = new JFrameAdminGU(objRemotoGU);

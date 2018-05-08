@@ -33,24 +33,36 @@ public class UsuarioDAO {
         usuariosNoAcceso = new ArrayList<>();
     }
 
-    public boolean solicitar(String codigo, String area, boolean acceso) {
+    public boolean solicitar(String codigo, String area, boolean acceso) throws IOException {
         boolean dentro = false;
         String path = "";
+        String datos = "";
+        String nuevo = "";
 
         if (acceso = true) {
             path = "../src/Capa_Acceso/solicitudes/solicitudesDeAcceso.txt";
         } else {
             path = "../src/Capa_Acceso/solicitudes/solicitudesDeNoAcceso.txt";
         }
+        
+        archivo.abrirArchivo(path, false, false);
+        while (archivo.puedeLeer()) {
+                datos = archivo.leerArchivo();
+        }
+        
         try {
             File archivo = new File(path);
             if (!archivo.exists()) {
                 Calendar calendario = new GregorianCalendar();
                 BufferedWriter bw;
                 try {
+                    
                     bw = new BufferedWriter(new FileWriter(archivo));
-                    bw.write(codigo + "\n" + area + "\n" + calendario.get(Calendar.HOUR) + "\n" + calendario.get(Calendar.DAY_OF_MONTH)
-                            + " de " + getMes(calendario.get(Calendar.MONTH)) + " de " + calendario.get(Calendar.YEAR));
+                    nuevo = codigo + "_" + area + "_" + calendario.get(Calendar.HOUR) + "_" + calendario.get(Calendar.DAY_OF_MONTH)
+                            + " de " + getMes(calendario.get(Calendar.MONTH)) + " de " + calendario.get(Calendar.YEAR)+"\n";
+                    datos += nuevo;
+                    bw.write(datos);
+                    
                     bw.close();
                 } catch (IOException ex) {
                     System.out.println("ERROR! Se ha producido un error al crear el archivo " + ex.getMessage());

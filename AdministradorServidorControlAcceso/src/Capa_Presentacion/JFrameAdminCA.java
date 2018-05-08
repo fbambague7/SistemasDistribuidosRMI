@@ -14,6 +14,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import Capa_Negocio.sop_rmi.*;
 import static Capa_Presentacion.Inicio.*;
+import jdk.nashorn.internal.codegen.CompilerConstants;
 
 /**
  *
@@ -31,6 +32,10 @@ public class JFrameAdminCA extends javax.swing.JFrame {
 
     public JFrameAdminCA(administradorCAint objRemoto) {
         this.objRemotoAdminCA = objRemoto;
+        
+        //CallbackImpl objRemotoDelLadoAdministrador= new CallbackImpl(this);
+        //UtilidadesServidorC.registrarObremti(objRemoto);
+        
         initComponents();
         //iniciar();
 
@@ -161,28 +166,36 @@ public class JFrameAdminCA extends javax.swing.JFrame {
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
 
         try {
+            boolean indCredenciales = false;
+
             String login;
             String clave;
 
             login = this.txtLog.getText();
             clave = this.txtClave.getText();
-            
-            AdministradorDTO admin=new AdministradorDTO(login, clave);
 
-            boolean indAcceso;
-            indAcceso = objRemotoAdminCA.loginAdministrador(admin);
+            indCredenciales = validarIngreso(login, clave);
 
-            if (indAcceso == false) {
-                JOptionPane.showMessageDialog(null, "¡Login o Password Incorrectos!");
+            if (indCredenciales == false) {
+                JOptionPane.showMessageDialog(null, "¡Login y Password deben estar entre 8 y 15 caracteres!");
             } else {
-                /*int numPuertoRMIRegistry = 2020;
+                AdministradorDTO admin = new AdministradorDTO(login, clave);
+
+                boolean indAcceso;
+                indAcceso = objRemotoAdminCA.loginAdministrador(admin);
+
+                if (indAcceso == false) {
+                    JOptionPane.showMessageDialog(null, "¡Login o Password Incorrectos!");
+                } else {
+                    /*int numPuertoRMIRegistry = 2020;
                 String direccionIpRMIRegistry = "localhost";
                 objRemotoListar = (listarUsuariosInt) UtilidadesRegistroC.ObtenerObjRemoto(numPuertoRMIRegistry, direccionIpRMIRegistry, "ObjRemotoListar");
-                */
-                JFrameAdminCAListar ob1 = new JFrameAdminCAListar(/*objRemotoListar*/);
-                ob1.setVisible(true);
-                dispose();
+                     */
+                    JFrameAdminCAListar ob1 = new JFrameAdminCAListar(/*objRemotoListar*/);
+                    ob1.setVisible(true);
+                    dispose();
 
+                }
             }
 
         } catch (RemoteException ex) {
@@ -192,14 +205,30 @@ public class JFrameAdminCA extends javax.swing.JFrame {
     }//GEN-LAST:event_btnIngresarActionPerformed
 
     /*
+    public void notificar(String mensaje)
+    {
+        System.out.println(mensaje);
+    }
+    */
+    
+    public boolean validarIngreso(String login, String clave) {
+        boolean validar = false;
+        if (login.length() >= 8 && login.length() <= 15) {
+            if (clave.length() >= 8 && login.length() <= 15) {
+                validar = true;
+            }
+        }
+        return validar;
+    }
+
+    /*
     public void iniciar() {
         this.lblCal1.setVisible(false);
         this.lblCal2.setVisible(false);
         this.lblCalExp.setVisible(false);
         this.btnIngresar.setVisible(false);
     }
-    */
-
+     */
     /**
      * @param args the command line arguments
      */

@@ -176,13 +176,13 @@ public class UsuarioDAO {
                 row = datos.split("_");
                 nombres = row[1];
                 switch (row[2]) {
-                    case "norte":
+                    case "administrativo":
                         enumRol = EnumRol.administrativo;
                         break;
-                    case "sur":
+                    case "docente":
                         enumRol = EnumRol.docente;
                         break;
-                    case "este":
+                    case "estudiante":
                         enumRol = EnumRol.estudiante;
                         break;
                 }
@@ -201,7 +201,7 @@ public class UsuarioDAO {
                         enumArea = EnumArea.oeste;
                         break;
                 }
-                userDTO = new UsuarioDTO(codigo,nombres,clave,enumArea,enumRol);
+                userDTO = new UsuarioDTO(nombres,codigo,clave,enumArea,enumRol);
                 archivo.cerrarArchivo();
                 
             } catch (IOException ex) {

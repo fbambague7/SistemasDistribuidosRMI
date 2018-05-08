@@ -5,8 +5,10 @@
  */
 package Capa_Servicios;
 
+import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.Remote;
+import java.rmi.RemoteException;
 
 /**
  *
@@ -26,5 +28,23 @@ public class UtilidadesRegistroC {
             return null;
         }
     }
+    
+    public static void RegistrarObjetoRemoto(Remote objetoRemoto, String dirIP, int numPuerto, String nombreObjeto) {
+        String UrlRegistro = "rmi://" + dirIP + ":" + numPuerto + "/" + nombreObjeto;
+        try {
+            Naming.rebind(UrlRegistro, objetoRemoto);
+            System.out.println("Se realizo el registro con la direccion: " + UrlRegistro);
+            System.out.println("Esperando peticiones ...");
+        } catch (RemoteException e) {
+            System.out.println("Error en el registro del objeto remoto: " +  e);
+            e.printStackTrace();
+        } catch (MalformedURLException e) {
+            System.out.println("Error url inválida");
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
+    }
+
     
 }

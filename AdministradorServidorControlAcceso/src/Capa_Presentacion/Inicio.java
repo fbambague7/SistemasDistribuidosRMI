@@ -116,7 +116,7 @@ public class Inicio extends javax.swing.JFrame {
         //direccionIpRMIRegistry = this.DireccionIp.getText();
         objRemotoListar = (listarUsuariosInt) UtilidadesRegistroC.ObtenerObjRemoto(numPuertoRMIRegistry, direccionIpRMIRegistry, "ObjRemotoListar");
         
-        objRemotoCallback = (CallbackInt) UtilidadesRegistroC.ObtenerObjRemoto(numPuertoRMIRegistry, direccionIpRMIRegistry, "ObjRemotoCallback");
+        //objRemotoCallback = (CallbackInt) UtilidadesRegistroC.ObtenerObjRemoto(numPuertoRMIRegistry, direccionIpRMIRegistry, "ObjRemotoCallback");
           
          
         JFrameAdminCA ob1 = new JFrameAdminCA(objRemotoAdminCA);

@@ -5,7 +5,7 @@
  */
 package Capa_Presentacion;
 
-import Capa_Negocio.EnumArea;
+import Capa_Negocio.clasesDTO.EnumArea;
 import Capa_Negocio.clasesDTO.UsuarioDTO;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
@@ -51,7 +51,6 @@ public class JFrameUsuario extends javax.swing.JFrame {
         btnVolver = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         lblCalExp = new javax.swing.JLabel();
-        txtArea = new javax.swing.JTextField();
         lblCal1 = new javax.swing.JLabel();
         lblCal2 = new javax.swing.JLabel();
         lblCal3 = new javax.swing.JLabel();
@@ -59,6 +58,7 @@ public class JFrameUsuario extends javax.swing.JFrame {
         txtCod = new javax.swing.JTextField();
         txtClave = new javax.swing.JTextField();
         btnSalir = new javax.swing.JButton();
+        cbArea = new javax.swing.JComboBox<>();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -100,6 +100,18 @@ public class JFrameUsuario extends javax.swing.JFrame {
         });
 
         btnSalir.setText("Salir");
+        btnSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalirActionPerformed(evt);
+            }
+        });
+
+        cbArea.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "norte", "sur", "este", "oeste" }));
+        cbArea.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbAreaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -129,9 +141,9 @@ public class JFrameUsuario extends javax.swing.JFrame {
                                             .addComponent(lblCal1))
                                         .addGap(76, 76, 76)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(txtCod)
+                                            .addComponent(txtCod, javax.swing.GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE)
                                             .addComponent(txtClave)
-                                            .addComponent(txtArea, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                            .addComponent(cbArea, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(btnSalir))))
                     .addGroup(layout.createSequentialGroup()
@@ -154,11 +166,11 @@ public class JFrameUsuario extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCal2)
                     .addComponent(txtClave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(11, 11, 11)
+                .addGap(10, 10, 10)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtArea, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblCal3))
-                .addGap(33, 33, 33)
+                    .addComponent(lblCal3)
+                    .addComponent(cbArea, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(32, 32, 32)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Solicitar)
                     .addComponent(btnSalir))
@@ -187,7 +199,9 @@ public class JFrameUsuario extends javax.swing.JFrame {
             
             codigo = this.txtCod.getText();
             clave = this.txtClave.getText();
-            area = this.txtArea.getText();
+            
+            area=cbArea.getSelectedItem().toString();
+            
             
             /*
             switch (areatxt) {
@@ -212,15 +226,16 @@ public class JFrameUsuario extends javax.swing.JFrame {
             if (usuario==null){
                 JOptionPane.showMessageDialog(null, "¡Acceso denegado código o clave inválidos, " +
                         "por favor contacte al administrador de la aplicación!");
-            }else if (area.equalsIgnoreCase(usuario.getArea().toString())){
+            }else if (!area.equalsIgnoreCase(usuario.getArea().toString())){
                 //Traer la informacion desde el control
                 JOptionPane.showMessageDialog(null, "¡Acceso Al area "+area+" denegada \n"
-                        + usuario.getRol()+"\n"+usuario.getNombres()+"\n"+usuario);
+                        + usuario.getRol()+"\n"+usuario.getNombres());
                 objRemotoUsuario.guardarArchivo(codigo, area, false);
             }else if (area.equalsIgnoreCase(usuario.getArea().toString())){
                 //Traer la informacion desde el control
                 JOptionPane.showMessageDialog(null, "¡Acceso Al area "+area+" concedida\n"
-                        + usuario.getRol()+"\n"+usuario.getNombres()+"\n"+usuario);
+                        + usuario.getRol()+"\n"+usuario.getNombres());
+                objRemotoUsuario.notificar("rol", usuario.getNombres());
                 objRemotoUsuario.guardarArchivo(codigo, area, true);
             }
             
@@ -229,6 +244,14 @@ public class JFrameUsuario extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_SolicitarActionPerformed
+
+    private void cbAreaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbAreaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbAreaActionPerformed
+
+    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnSalirActionPerformed
 
     /*
     public void iniciar() {
@@ -535,6 +558,7 @@ public class JFrameUsuario extends javax.swing.JFrame {
     private javax.swing.JButton Solicitar;
     private javax.swing.JButton btnSalir;
     private javax.swing.JButton btnVolver;
+    private javax.swing.JComboBox<String> cbArea;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
@@ -542,7 +566,6 @@ public class JFrameUsuario extends javax.swing.JFrame {
     private javax.swing.JLabel lblCal2;
     private javax.swing.JLabel lblCal3;
     private javax.swing.JLabel lblCalExp;
-    private javax.swing.JTextField txtArea;
     private javax.swing.JTextField txtClave;
     private javax.swing.JTextField txtCod;
     // End of variables declaration//GEN-END:variables

@@ -75,9 +75,9 @@
                                       </Group>
                                       <EmptySpace min="-2" pref="76" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="txtCod" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="txtCod" alignment="0" pref="153" max="32767" attributes="0"/>
                                           <Component id="txtClave" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="txtArea" alignment="0" min="-2" pref="153" max="-2" attributes="0"/>
+                                          <Component id="cbArea" alignment="0" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
@@ -112,12 +112,12 @@
                   <Component id="lblCal2" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="txtClave" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="txtArea" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="lblCal3" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="cbArea" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="Solicitar" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btnSalir" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -147,8 +147,6 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Solicitar Acceso"/>
       </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="txtArea">
     </Component>
     <Component class="javax.swing.JLabel" name="lblCal1">
       <Properties>
@@ -181,6 +179,27 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Salir"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSalirActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="cbArea">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="4">
+            <StringItem index="0" value="norte"/>
+            <StringItem index="1" value="sur"/>
+            <StringItem index="2" value="este"/>
+            <StringItem index="3" value="oeste"/>
+          </StringArray>
+        </Property>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cbAreaActionPerformed"/>
+      </Events>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
     </Component>
   </SubComponents>
 </Form>

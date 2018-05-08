@@ -162,28 +162,37 @@ public class JFrameAdminGU extends javax.swing.JFrame {
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
 
         try {
+            boolean indCredenciales = false;
+
             String login;
             String clave;
 
             login = this.txtLog.getText();
             clave = this.txtClave.getText();
-            
-            AdministradorDTO admin=new AdministradorDTO(login, clave);
 
-            boolean indAcceso;
-            indAcceso = objRemotoGU.loginAdministrador(login, clave);
+            indCredenciales = validarIngreso(login, clave);
 
-            if (indAcceso == false) {
-                JOptionPane.showMessageDialog(null, "¡Login o Password Incorrectos!");
+            if (indCredenciales == false) {
+                JOptionPane.showMessageDialog(null, "¡Login y Password deben estar entre 8 y 15 caracteres!");
             } else {
-                /*int numPuertoRMIRegistry = 2020;
+
+                AdministradorDTO admin = new AdministradorDTO(login, clave);
+
+                boolean indAcceso;
+                indAcceso = objRemotoGU.loginAdministrador(login, clave);
+
+                if (indAcceso == false) {
+                    JOptionPane.showMessageDialog(null, "¡Login o Password Incorrectos!");
+                } else {
+                    /*int numPuertoRMIRegistry = 2020;
                 String direccionIpRMIRegistry = "localhost";
                 objRemotoListar = (listarUsuariosInt) UtilidadesRegistroC.ObtenerObjRemoto(numPuertoRMIRegistry, direccionIpRMIRegistry, "ObjRemotoListar");
-                */
-                JFrameAdminCAGestion ob1 = new JFrameAdminCAGestion(/*objRemotoListar*/);
-                ob1.setVisible(true);
-                dispose();
+                     */
+                    JFrameAdminCAGestion ob1 = new JFrameAdminCAGestion(/*objRemotoListar*/);
+                    ob1.setVisible(true);
+                    dispose();
 
+                }
             }
 
         } catch (RemoteException ex) {
@@ -192,6 +201,16 @@ public class JFrameAdminGU extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnIngresarActionPerformed
 
+    public boolean validarIngreso(String login, String clave) {
+        boolean validar = false;
+        if (login.length() >= 8 && login.length() <= 15) {
+            if (clave.length() >= 8 && login.length() <= 15) {
+                validar = true;
+            }
+        }
+        return validar;
+    }
+
     /*
     public void iniciar() {
         this.lblCal1.setVisible(false);
@@ -199,8 +218,7 @@ public class JFrameAdminGU extends javax.swing.JFrame {
         this.lblCalExp.setVisible(false);
         this.btnIngresar.setVisible(false);
     }
-    */
-
+     */
     /**
      * @param args the command line arguments
      */

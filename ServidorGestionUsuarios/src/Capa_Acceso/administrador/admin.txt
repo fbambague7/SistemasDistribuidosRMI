@@ -1,1 +1,1 @@
-admin_pass
+administrador_password

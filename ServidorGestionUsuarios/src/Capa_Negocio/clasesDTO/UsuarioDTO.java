@@ -14,6 +14,9 @@ public class UsuarioDTO implements Serializable{
     private String clave;
     private EnumArea area;
     private EnumRol rol;
+    
+    public UsuarioDTO() {
+    }
 
     public UsuarioDTO(String nombres, String codigo, String clave, EnumArea area, EnumRol rol) {
         this.nombres = nombres;
