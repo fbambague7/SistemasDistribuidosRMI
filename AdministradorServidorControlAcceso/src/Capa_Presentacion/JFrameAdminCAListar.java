@@ -51,11 +51,11 @@ public class JFrameAdminCAListar extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
         btnAprobado = new javax.swing.JButton();
         btnVolver = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         tblInfo = new javax.swing.JTable();
         lblCalExp = new javax.swing.JLabel();
         btnNoApr = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -86,8 +86,6 @@ public class JFrameAdminCAListar extends javax.swing.JFrame {
             }
         });
 
-        jLabel3.setText("ADMINISTRADOR CA");
-
         tblInfo.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -110,24 +108,12 @@ public class JFrameAdminCAListar extends javax.swing.JFrame {
             }
         });
 
+        jLabel4.setText("ADMINISTRADOR CONTROL ACCESO");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(288, 288, 288)
-                .addComponent(jLabel3)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(64, 64, 64)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnNoApr)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(9, 9, 9)
-                        .addComponent(btnAprobado)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 507, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(70, 70, 70))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -137,21 +123,36 @@ public class JFrameAdminCAListar extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(lblCalExp)
                         .addGap(308, 308, 308))))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(64, 64, 64)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnNoApr)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(9, 9, 9)
+                                .addComponent(btnAprobado)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 507, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(267, 267, 267)
+                        .addComponent(jLabel4)))
+                .addContainerGap(64, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(40, 40, 40)
-                .addComponent(jLabel3)
-                .addGap(56, 56, 56)
+                .addGap(59, 59, 59)
+                .addComponent(jLabel4)
+                .addGap(37, 37, 37)
                 .addComponent(lblCalExp)
                 .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnAprobado)
                         .addGap(18, 18, 18)
-                        .addComponent(btnNoApr)))
+                        .addComponent(btnNoApr))
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(64, 64, 64)
                 .addComponent(btnVolver)
                 .addContainerGap(11, Short.MAX_VALUE))
@@ -163,12 +164,12 @@ public class JFrameAdminCAListar extends javax.swing.JFrame {
     private void btnAprobadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAprobadoActionPerformed
         try {
             usuariosAcceso.addAll(nuevo.objRemotoListar.listarUsuariosAcceso());
-            
+            mostrar(usuariosAcceso);
         } catch (RemoteException ex) {
             Logger.getLogger(JFrameAdminCAListar.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        mostrar(usuariosAcceso);
+        
     }//GEN-LAST:event_btnAprobadoActionPerformed
 
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
@@ -181,12 +182,12 @@ public class JFrameAdminCAListar extends javax.swing.JFrame {
     private void btnNoAprActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNoAprActionPerformed
         try {
             usuariosNoAcceso.addAll(nuevo.objRemotoListar.listarUsuariosNoAcceso());
-
+            mostrar(usuariosNoAcceso);
         } catch (RemoteException ex) {
             Logger.getLogger(JFrameAdminCAListar.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        mostrar(usuariosNoAcceso);
+        
     }//GEN-LAST:event_btnNoAprActionPerformed
 
     public void mostrar(ArrayList<UsuarioAccesoInstalacionesDTO> usuarios){
@@ -792,7 +793,7 @@ public class JFrameAdminCAListar extends javax.swing.JFrame {
     private javax.swing.JButton btnAprobado;
     private javax.swing.JButton btnNoApr;
     private javax.swing.JButton btnVolver;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable jTable1;

@@ -79,7 +79,7 @@ public class JFrameServidorGU extends javax.swing.JFrame  {
             }
         });
 
-        jLabel3.setText("SERVIDOR TURNOS");
+        jLabel3.setText("SERVIDOR GESTION USUARIOS");
 
         jLabel1.setText("Servidor Listo Para Escuchar Peticiones...");
 

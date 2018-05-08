@@ -31,9 +31,9 @@ public class gestionUsuariosImpl extends UnicastRemoteObject implements gestionU
     }
 
     @Override
-    public UsuarioDTO consultarUsuario(String codigo, String clave, String area) throws RemoteException {
+    public UsuarioDTO consultarUsuario(String codigo) throws RemoteException {
         System.out.println("Consultando usuario...");
-        return userDAO.consultarUsuario(codigo,clave,area);
+        return userDAO.consultarUsuario(codigo);
     }
     
     @Override

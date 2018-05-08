@@ -1,8 +1,7 @@
 package Capa_Presentacion;
 
-import Servicios.*;
 import Capa_Negocio.sop_rmi.*;
-import servicios.UtilidadesRegistroC;
+import Capa_Servicios.UtilidadesRegistroC;
 
 /**
  *

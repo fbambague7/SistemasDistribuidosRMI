@@ -125,17 +125,17 @@ public class Inicio extends javax.swing.JFrame {
         
         try
         {  
-           //Usuario
+           //admin
            UtilidadesRegistroS.arrancarNS(numPuertoRMIRegistry);
            UtilidadesRegistroS.RegistrarObjetoRemoto(objRemotoGU, direccionIpRMIRegistry, numPuertoRMIRegistry, "objRemotoGU");           
            
-           //Usuario
+           //gestion
            //UtilidadesRegistroS.arrancarNS(numPuertoRMIRegistry);
            UtilidadesRegistroS.RegistrarObjetoRemoto(objRemotoGestion, direccionIpRMIRegistry, numPuertoRMIRegistry, "objRemotoGestion");           
            
            //Listar
            //UtilidadesRegistroS.arrancarNS(numPuertoRMIRegistry);
-           UtilidadesRegistroS.RegistrarObjetoRemoto(objRemotoGestion, direccionIpRMIRegistry, numPuertoRMIRegistry, "objRemotoEsta");           
+           UtilidadesRegistroS.RegistrarObjetoRemoto(objRemotoEsta, direccionIpRMIRegistry, numPuertoRMIRegistry, "objRemotoEsta");           
            
            //Callback
            //UtilidadesRegistroS.arrancarNS(numPuertoRMIRegistry);

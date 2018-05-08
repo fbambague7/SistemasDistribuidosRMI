@@ -20,7 +20,7 @@ import java.util.ArrayList;
  * @author USUARIO
  */
 public class AdministradorDAO {
-    private String path = "../src/acceso/archivos/admin.txt";
+    private String path = "../src/Capa_Acceso/administrador/admin.txt";
 
     public AdministradorDAO() {
     }
@@ -34,7 +34,7 @@ public class AdministradorDAO {
             if (archivo.puedeLeer()){
                 String datos = archivo.leerArchivo();
                 // datos: admin;root
-                String[] partes = datos.split(";");
+                String[] partes = datos.split("_");
                 String login = partes[0];
                 String clave = partes[1];
                 if(login.equals(objAdminControlES.getLogin()) &&
@@ -59,7 +59,7 @@ public class AdministradorDAO {
 
         try {
             archivo.abrirArchivo(path,true,false);
-            archivo.escribirArchivo(objAdminControlES.getLogin() + ";"
+            archivo.escribirArchivo(objAdminControlES.getLogin() + "_"
                     + objAdminControlES.getClave());
             archivo.cerrarArchivo();
             modificado = true;

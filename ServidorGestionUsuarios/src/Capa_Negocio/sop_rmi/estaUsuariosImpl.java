@@ -31,6 +31,6 @@ public class estaUsuariosImpl extends UnicastRemoteObject implements estaUsuario
     @Override
     public UsuarioDTO obtenerUsuarioRegistrado(String codigo,String clave, String area) throws RemoteException {
         System.out.println("Obteniendo el usuario...");
-        return userDAO.consultarUsuario(codigo, clave, area);
+        return userDAO.consultarUsuario1(codigo, clave, area);
     }
 }

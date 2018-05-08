@@ -13,6 +13,6 @@ import java.rmi.RemoteException;
 public interface gestionUsuariosInt extends Remote{
     public boolean registrarUsuario(UsuarioDTO usuario) throws RemoteException;
     public boolean modificarUsuario(UsuarioDTO usuario) throws RemoteException;
-    public boolean eliminarUsuario(String nombre) throws RemoteException;
-    public boolean consultarUsuario (String codigo, String clave, String area)throws RemoteException;
+    public boolean eliminarUsuario(String codigo) throws RemoteException;
+    public UsuarioDTO consultarUsuario (String codigo)throws RemoteException;
 }

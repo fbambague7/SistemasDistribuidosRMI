@@ -50,13 +50,13 @@ public class JFrameAdminGU extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         btnVolver = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
         lblCalExp = new javax.swing.JLabel();
         lblCal1 = new javax.swing.JLabel();
         lblCal2 = new javax.swing.JLabel();
         btnIngresar = new javax.swing.JButton();
         txtLog = new javax.swing.JTextField();
         txtClave = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -80,8 +80,6 @@ public class JFrameAdminGU extends javax.swing.JFrame {
             }
         });
 
-        jLabel3.setText("ADMINISTRADOR GU");
-
         lblCalExp.setText("Solicitar Acceso");
 
         lblCal1.setText("Login:");
@@ -94,6 +92,8 @@ public class JFrameAdminGU extends javax.swing.JFrame {
                 btnIngresarActionPerformed(evt);
             }
         });
+
+        jLabel3.setText("ADMINISTRADOR GESTION USUARIO");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -115,22 +115,24 @@ public class JFrameAdminGU extends javax.swing.JFrame {
                                         .addComponent(txtClave))))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(172, 172, 172)
-                        .addComponent(lblCalExp))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(190, 190, 190)
-                        .addComponent(jLabel3)))
+                        .addComponent(lblCalExp)))
                 .addContainerGap(87, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(btnVolver)
-                .addGap(45, 45, 45))
+                .addGap(0, 133, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(btnVolver)
+                        .addGap(45, 45, 45))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addGap(104, 104, 104))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(41, 41, 41)
+                .addContainerGap(46, Short.MAX_VALUE)
                 .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                .addGap(33, 33, 33)
                 .addComponent(lblCalExp)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)

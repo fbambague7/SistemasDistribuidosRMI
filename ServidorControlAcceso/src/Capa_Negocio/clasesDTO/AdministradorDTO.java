@@ -6,9 +6,12 @@ import java.io.Serializable;
  *
  * @author Usuario
  */
-public class AdministradorDTO {
+public class AdministradorDTO implements Serializable{
    private String login;
    private String clave;
+   
+   public AdministradorDTO() {
+    }
 
     public AdministradorDTO(String login, String clave) {
         this.login = login;

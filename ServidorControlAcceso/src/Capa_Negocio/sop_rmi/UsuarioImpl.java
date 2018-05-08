@@ -20,7 +20,7 @@ public class UsuarioImpl extends UnicastRemoteObject implements UsuarioInt {
     private CallbackInt Callback;
     private estaUsuariosInt consultar;
 
-    protected UsuarioImpl() throws RemoteException {
+    public UsuarioImpl() throws RemoteException {
         super();
         usuarioDTO = new UsuarioDTO();
         usuarioDAO = new UsuarioDAO();

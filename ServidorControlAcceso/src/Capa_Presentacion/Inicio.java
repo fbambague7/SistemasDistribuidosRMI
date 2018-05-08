@@ -1,7 +1,9 @@
 package Capa_Presentacion;
 
 import Capa_Negocio.sop_rmi.CallbackImpl;
+import Capa_Negocio.sop_rmi.UsuarioImpl;
 import Capa_Negocio.sop_rmi.administradorCAImpl;
+import Capa_Negocio.sop_rmi.estaUsuariosInt;
 import Capa_Negocio.sop_rmi.listarUsuariosImpl;
 import Capa_Servicios.UtilidadesRegistroS;
 import java.rmi.RemoteException;
@@ -110,12 +112,15 @@ public class Inicio extends javax.swing.JFrame {
         numPuertoRMIRegistry = (Integer.parseInt(this.NumPuerto.getText()));
         direccionIpRMIRegistry = this.DireccionIp.getText();
         
-        administradorCAImpl objRemoto = null;
+        UsuarioImpl objRemotoUsuario = null;
+        administradorCAImpl objRemotoAdminCA = null;
         listarUsuariosImpl objRemotoListar = null;
         CallbackImpl objRemotoCallback = null;
+        //estaUsuariosInt objRemotoEsta = null;
         
         try {
-            objRemoto = new administradorCAImpl();
+            objRemotoUsuario = new UsuarioImpl();
+            objRemotoAdminCA = new administradorCAImpl();
             objRemotoListar = new listarUsuariosImpl();
             objRemotoCallback = new CallbackImpl();
         } catch (RemoteException ex) {
@@ -126,11 +131,11 @@ public class Inicio extends javax.swing.JFrame {
         {  
            //Usuario
            UtilidadesRegistroS.arrancarNS(numPuertoRMIRegistry);
-           UtilidadesRegistroS.RegistrarObjetoRemoto(objRemoto, direccionIpRMIRegistry, numPuertoRMIRegistry, "objRemotoUsuario");           
+           UtilidadesRegistroS.RegistrarObjetoRemoto(objRemotoUsuario, direccionIpRMIRegistry, numPuertoRMIRegistry, "objRemotoUsuario");           
            
-           //Usuario
+           //Admin
            //UtilidadesRegistroS.arrancarNS(numPuertoRMIRegistry);
-           UtilidadesRegistroS.RegistrarObjetoRemoto(objRemoto, direccionIpRMIRegistry, numPuertoRMIRegistry, "objRemotoAdminCA");           
+           UtilidadesRegistroS.RegistrarObjetoRemoto(objRemotoAdminCA, direccionIpRMIRegistry, numPuertoRMIRegistry, "objRemotoAdminCA");           
            
            //Listar
            //UtilidadesRegistroS.arrancarNS(numPuertoRMIRegistry);

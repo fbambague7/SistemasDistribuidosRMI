@@ -21,7 +21,7 @@ import java.util.logging.Logger;
  * @author JULIAN
  */
 public class UsuarioDAO {
-    private String ruta="../src/acceso/usuarios/usuario_";
+    //private String ruta="../src/Capa_Acceso/usuarios/usuario_";
     private Archivo archivo;
     public UsuarioDAO() {
         archivo = new Archivo();
@@ -29,7 +29,7 @@ public class UsuarioDAO {
 
     public boolean registrarUsuario(UsuarioDTO usuario){
         boolean registrado = false;
-
+        String ruta="../src/Capa_Acceso/usuarios/usuario_";
         ruta+=usuario.getCodigo();
         ruta+=".txt";
 
@@ -56,7 +56,7 @@ public class UsuarioDAO {
 
     public boolean modificarUsuario (UsuarioDTO usuario){
         boolean modificado = false;
-
+        String ruta="../src/Capa_Acceso/usuarios/usuario_";
         ruta+=usuario.getCodigo();
         ruta+=".txt";
 
@@ -75,9 +75,88 @@ public class UsuarioDAO {
         return modificado;
     }
 
-    public UsuarioDTO consultarUsuario(String codigo, String clave, String area){
+    public UsuarioDTO consultarUsuario(String codigo){
         boolean existe;
 
+        String clave;
+        String area;
+        String ruta="../src/Capa_Acceso/usuarios/usuario_";
+        ruta+=codigo;
+        ruta+=".txt";
+
+        String linea,nombres;
+        EnumArea enumArea=null;
+        EnumRol enumRol=null;
+        File fichero = new File(ruta);
+        existe = fichero.exists();
+        UsuarioDTO userDTO = null;
+        String[] row = null;
+        if(existe){
+            System.out.println("Usuario ha sido encontrado");
+            
+            try {
+                archivo.abrirArchivo(ruta, false, false);
+                String datos = archivo.leerArchivo();
+                row = datos.split("_");
+                nombres = row[1];
+                switch (row[2]) {
+                    case "administrativo":
+                        enumRol = EnumRol.administrativo;
+                        break;
+                    case "docente":
+                        enumRol = EnumRol.docente;
+                        break;
+                    case "estudiante":
+                        enumRol = EnumRol.estudiante;
+                        break;
+                }
+                clave = row[3];
+                switch (row[4]) {
+                    case "norte":
+                        enumArea = EnumArea.norte;
+                        break;
+                    case "sur":
+                        enumArea = EnumArea.sur;
+                        break;
+                    case "este":
+                        enumArea = EnumArea.este;
+                        break;
+                    case "oeste":
+                        enumArea = EnumArea.oeste;
+                        break;
+                }
+                userDTO = new UsuarioDTO(codigo,nombres,clave,enumArea,enumRol);
+                archivo.cerrarArchivo();
+                
+            } catch (IOException ex) {
+                Logger.getLogger(estaUsuariosImpl.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+        }else{
+            return null;
+        }
+        return userDTO;
+        
+    }
+
+    public boolean eliminarUsuario(String codigo){
+        boolean eliminado;
+        String ruta="../src/Capa_Acceso/usuarios/usuario_";
+        ruta+= codigo;
+        ruta+=".txt";
+
+        File fichero = new File(ruta);
+        eliminado = fichero.delete();
+        if(eliminado)
+            System.out.println("Usuario eliminado correctamente");
+        else
+            System.out.println("Usuario no se pudo eliminar");
+        return eliminado;
+    }
+    
+    public UsuarioDTO consultarUsuario1(String codigo, String clave, String area){
+        boolean existe;
+        String ruta="../src/Capa_Acceso/usuarios/usuario_";
         ruta+=codigo;
         ruta+=".txt";
 
@@ -108,7 +187,7 @@ public class UsuarioDAO {
                         break;
                 }
                 clave = row[3];
-                switch (area) {
+                switch (row[4]) {
                     case "norte":
                         enumArea = EnumArea.norte;
                         break;
@@ -134,20 +213,5 @@ public class UsuarioDAO {
         }
         return userDTO;
         
-    }
-
-    public boolean eliminarUsuario(String codigo){
-        boolean eliminado;
-
-        ruta+= codigo;
-        ruta+=".txt";
-
-        File fichero = new File(ruta);
-        eliminado = fichero.delete();
-        if(eliminado)
-            System.out.println("Usuario eliminado correctamente");
-        else
-            System.out.println("Usuario no se pudo eliminar");
-        return eliminado;
     }
 }

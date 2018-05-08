@@ -13,8 +13,12 @@ public class UsuarioAccesoInstalacionesDTO implements Serializable{
     private String fechaEntrada;
     private boolean acceso;
     
-    public UsuarioAccesoInstalacionesDTO(String codigo, String horaEntrada, String fechaEntrada) {
+    public UsuarioAccesoInstalacionesDTO() {
+    }
+    
+    public UsuarioAccesoInstalacionesDTO(String codigo, String area, String horaEntrada, String fechaEntrada) {
         this.codigo = codigo;
+        this.area=area;
         this.horaEntrada = horaEntrada;
         this.fechaEntrada = fechaEntrada;
     }

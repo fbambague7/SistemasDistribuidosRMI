@@ -79,7 +79,7 @@ public class JFrameAdminCA extends javax.swing.JFrame {
             }
         });
 
-        jLabel3.setText("ADMINISTRADOR CA");
+        jLabel3.setText("ADMINISTRADOR CONTROL ACCESO");
 
         lblCalExp.setText("Solicitar Acceso");
 
@@ -114,22 +114,24 @@ public class JFrameAdminCA extends javax.swing.JFrame {
                                         .addComponent(txtClave))))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(172, 172, 172)
-                        .addComponent(lblCalExp))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(190, 190, 190)
-                        .addComponent(jLabel3)))
+                        .addComponent(lblCalExp)))
                 .addContainerGap(87, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(btnVolver)
-                .addGap(45, 45, 45))
+                .addGap(0, 138, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(btnVolver)
+                        .addGap(45, 45, 45))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addGap(97, 97, 97))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(41, 41, 41)
+                .addContainerGap(43, Short.MAX_VALUE)
                 .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                .addGap(36, 36, 36)
                 .addComponent(lblCalExp)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)

@@ -17,7 +17,7 @@ import java.io.IOException;
  * @author JULIAN
  */
 public class AdministradorDAO {
-    private String path = "../src/acceso/archivos/admin.txt";
+    private String path = "../src/Capa_Acceso/administrador/admin.txt";
     private Archivo archivo;
 
     public AdministradorDAO() {

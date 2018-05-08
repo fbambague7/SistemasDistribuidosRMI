@@ -41,13 +41,13 @@ public class listarUsuariosImpl extends UnicastRemoteObject implements listarUsu
     public ArrayList<UsuarioAccesoInstalacionesDTO> listarUsuariosAcceso() throws RemoteException {
         System.out.println("Invocando listarUsuariosAcceso...");
         
-        
+        /*
         System.out.println("Nueva Instancia de Archivo()");
         File file = new File(".");
         System.out.println(file.getAbsolutePath());
 
         try {
-            archivo.abrirArchivo("../src/acceso/archivos/solicitudes/solicitudesDeAcceso.txt",false,false);
+            archivo.abrirArchivo("../src/Capa_Acceso/solicitudes/solicitudesDeAcceso.txt",false,false);
             //String path = "../src/acceso/archivos/solicitudes/solicitudesDeAcceso_" + codigo + ".txt";
             while(archivo.puedeLeer()){
                 String datos = archivo.leerArchivo();
@@ -71,6 +71,8 @@ public class listarUsuariosImpl extends UnicastRemoteObject implements listarUsu
         } catch (IOException e) {
             System.out.println("ERROR! Se ha producido un error al leer el archivo " + e.getMessage());
         }
+        */
+        usuariosAcceso=usuarioDAO.UsuariosAcceso();
         return usuariosAcceso;
     }
 
@@ -78,12 +80,13 @@ public class listarUsuariosImpl extends UnicastRemoteObject implements listarUsu
     public ArrayList<UsuarioAccesoInstalacionesDTO> listarUsuariosNoAcceso() throws RemoteException {
         System.out.println("Invocando listarUsuariosNoAcceso...");
        
+        /*
         System.out.println("Nueva Instancia de Archivo()");
         File file = new File(".");
         System.out.println(file.getAbsolutePath());
 
         try {
-            archivo.abrirArchivo("../src/acceso/archivos/solicitudes/solicitudesDeNoAcceso.txt",false,false);
+            archivo.abrirArchivo("../src/Capa_Acceso/solicitudes/solicitudesDeNoAcceso.txt",false,false);
             while(archivo.puedeLeer()){
                 String datos = archivo.leerArchivo();
                 // datos: admin;root
@@ -107,6 +110,8 @@ public class listarUsuariosImpl extends UnicastRemoteObject implements listarUsu
         } catch (IOException e) {
             System.out.println("ERROR! Se ha producido un error al leer el archivo " + e.getMessage());
         }
+        */
+        usuariosNoAcceso = usuarioDAO.UsuariosNoAcceso();
         return usuariosNoAcceso;
     }
 

@@ -79,7 +79,7 @@ public class JFrameServidorCA extends javax.swing.JFrame  {
             }
         });
 
-        jLabel3.setText("SERVIDOR TURNOS");
+        jLabel3.setText("SERVIDOR CONTROL ACCESO");
 
         jLabel1.setText("Servidor Listo Para Escuchar Peticiones...");
 
