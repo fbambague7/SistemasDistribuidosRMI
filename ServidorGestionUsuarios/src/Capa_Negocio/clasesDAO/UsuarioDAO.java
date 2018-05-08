@@ -34,7 +34,7 @@ public class UsuarioDAO {
         ruta+=".txt";
 
         String datos= usuario.getCodigo()+"_"+usuario.getNombres()+"_"
-                +usuario.getRol()+"_"+usuario.getClave()+"_"+usuario.getArea()+"_";
+                +usuario.getRol()+"_"+usuario.getClave()+"_"+usuario.getArea();
         try {
             archivo.abrirArchivo(ruta,true,true);
             archivo.escribirArchivo(datos);
@@ -61,7 +61,7 @@ public class UsuarioDAO {
         ruta+=".txt";
 
         String datos = usuario.getCodigo()+"_"+usuario.getNombres()+"_"
-                +usuario.getRol()+"_"+usuario.getClave()+"_"+usuario.getArea()+"_";
+                +usuario.getRol()+"_"+usuario.getClave()+"_"+usuario.getArea();
         try {
             archivo.abrirArchivo(ruta,true,false);
             archivo.escribirArchivo(datos);
@@ -125,7 +125,7 @@ public class UsuarioDAO {
                         enumArea = EnumArea.oeste;
                         break;
                 }
-                userDTO = new UsuarioDTO(codigo,nombres,clave,enumArea,enumRol);
+                userDTO = new UsuarioDTO(nombres,codigo,clave,enumArea,enumRol);
                 archivo.cerrarArchivo();
                 
             } catch (IOException ex) {
