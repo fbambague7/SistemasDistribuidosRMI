@@ -6,10 +6,15 @@
 package Capa_Negocio.clasesDAO;
 
 import Capa_Acceso.Archivo;
+import Capa_Negocio.clasesDTO.EnumArea;
+import Capa_Negocio.clasesDTO.EnumRol;
 import Capa_Negocio.clasesDTO.UsuarioDTO;
+import Capa_Negocio.sop_rmi.estaUsuariosImpl;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -70,19 +75,64 @@ public class UsuarioDAO {
         return modificado;
     }
 
-    public boolean consultarUsuario(String codigo, String clave, String area){
+    public UsuarioDTO consultarUsuario(String codigo, String clave, String area){
         boolean existe;
 
         ruta+=codigo;
         ruta+=".txt";
 
+        String linea,nombres;
+        EnumArea enumArea=null;
+        EnumRol enumRol=null;
         File fichero = new File(ruta);
         existe = fichero.exists();
-        if(existe)
+        UsuarioDTO userDTO = null;
+        String[] row = null;
+        if(existe){
             System.out.println("Usuario ha sido encontrado");
-        else
-            System.out.println("Ususario no ha sido encontrado");
-        return existe;
+            
+            try {
+                archivo.abrirArchivo(ruta, false, false);
+                String datos = archivo.leerArchivo();
+                row = datos.split("_");
+                nombres = row[1];
+                switch (row[2]) {
+                    case "norte":
+                        enumRol = EnumRol.administrativo;
+                        break;
+                    case "sur":
+                        enumRol = EnumRol.docente;
+                        break;
+                    case "este":
+                        enumRol = EnumRol.estudiante;
+                        break;
+                }
+                clave = row[3];
+                switch (area) {
+                    case "norte":
+                        enumArea = EnumArea.norte;
+                        break;
+                    case "sur":
+                        enumArea = EnumArea.sur;
+                        break;
+                    case "este":
+                        enumArea = EnumArea.este;
+                        break;
+                    case "oeste":
+                        enumArea = EnumArea.oeste;
+                        break;
+                }
+                userDTO = new UsuarioDTO(codigo,nombres,clave,enumArea,enumRol);
+                archivo.cerrarArchivo();
+                
+            } catch (IOException ex) {
+                Logger.getLogger(estaUsuariosImpl.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+        }else{
+            return null;
+        }
+        return userDTO;
         
     }
 

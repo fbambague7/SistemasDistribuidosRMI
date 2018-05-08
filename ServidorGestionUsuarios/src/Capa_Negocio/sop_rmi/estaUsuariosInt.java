@@ -6,5 +6,5 @@ import java.util.ArrayList;
 import Capa_Negocio.clasesDTO.UsuarioDTO;
 
 public interface estaUsuariosInt extends Remote {
-    public UsuarioDTO esUsuarioRegistrado(String codigo) throws RemoteException;
+    public UsuarioDTO obtenerUsuarioRegistrado(String codigo, String clave, String area) throws RemoteException;
 } 
