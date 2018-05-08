@@ -22,9 +22,14 @@ public class UsuarioDAO {
     public UsuarioDAO() {
     }
     
-    public boolean entrarALasInstalaciones(String codigo){
-        String path = "../src/acceso/archivos/instalaciones/usuario_" + codigo + ".txt";
+    public boolean solicitar(String codigo, String area, boolean acceso){
         boolean dentro = false;
+        String path="";
+        
+        if(acceso=true)
+            path = "../src/acceso/archivos/solicitudes/solicitudesDeAcceso.txt";
+        else
+            path = "../src/acceso/archivos/solicitudes/solicitudesDeNoAcceso.txt";
         try {
             File archivo = new File(path);
             if(!archivo.exists()){
@@ -32,8 +37,8 @@ public class UsuarioDAO {
                 BufferedWriter bw;
                 try {
                     bw = new BufferedWriter(new FileWriter(archivo));
-                    bw.write(codigo + "\n" + calendario.get(Calendar.HOUR) + "\n" + calendario.get(Calendar.DAY_OF_MONTH)
-                    + " de " + getMes(calendario.get(Calendar.MONTH)) + " de " + calendario.get(Calendar.YEAR));
+                    bw.write(codigo + "\n" +area + "\n" + calendario.get(Calendar.HOUR) + "\n" + calendario.get(Calendar.DAY_OF_MONTH)
+                    + " de " + getMes(calendario.get(Calendar.MONTH)) + " de " + calendario.get(Calendar.YEAR)+ "\n" + acceso);
                     bw.close();
                 } catch (IOException ex) {
                     System.out.println("ERROR! Se ha producido un error al crear el archivo " + ex.getMessage());
@@ -45,7 +50,7 @@ public class UsuarioDAO {
         }
         return dentro;
     }
-    
+        
     public boolean salirDeLasInstalaciones(String codigo){
         String path = "../src/acceso/archivos/instalaciones/usuario_" + codigo + ".txt";
         boolean dentro = false;

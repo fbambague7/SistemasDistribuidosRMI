@@ -1,6 +1,7 @@
 package Capa_Negocio.sop_rmi;
 
 import Capa_Acceso.Archivo;
+import Capa_Negocio.clasesDAO.UsuarioDAO;
 import Capa_Negocio.clasesDTO.UsuarioAccesoInstalacionesDTO;
 import Capa_Negocio.sop_rmi.listarUsuariosInt;
 import java.io.File;
@@ -18,6 +19,7 @@ public class listarUsuariosImpl extends UnicastRemoteObject implements listarUsu
     ArrayList<UsuarioAccesoInstalacionesDTO> usuariosAcceso;
     ArrayList<UsuarioAccesoInstalacionesDTO> usuariosNoAcceso;
     UsuarioAccesoInstalacionesDTO usuarioDTO;
+    UsuarioDAO usuarioDAO;
     Archivo archivo;
 
     public listarUsuariosImpl() throws RemoteException {
@@ -25,6 +27,7 @@ public class listarUsuariosImpl extends UnicastRemoteObject implements listarUsu
         archivo = new Archivo();
         usuariosAcceso = new ArrayList<>();
         usuariosNoAcceso = new ArrayList<>();
+        usuarioDAO = new UsuarioDAO();
     }
 
     /*
@@ -37,23 +40,28 @@ public class listarUsuariosImpl extends UnicastRemoteObject implements listarUsu
     @Override
     public ArrayList<UsuarioAccesoInstalacionesDTO> listarUsuariosAcceso() throws RemoteException {
         System.out.println("Invocando listarUsuariosAcceso...");
-       
+        
+        
         System.out.println("Nueva Instancia de Archivo()");
         File file = new File(".");
         System.out.println(file.getAbsolutePath());
 
         try {
-            archivo.abrirArchivo("../src/acceso/archivos/solicitudesDeAcceso.txt",false,false);
+            archivo.abrirArchivo("../src/acceso/archivos/solicitudes/solicitudesDeAcceso.txt",false,false);
+            //String path = "../src/acceso/archivos/solicitudes/solicitudesDeAcceso_" + codigo + ".txt";
             while(archivo.puedeLeer()){
                 String datos = archivo.leerArchivo();
                 // datos: admin;root
-                String[] partes = datos.split(";");
+                String[] partes = datos.split("_");
                 String codigo = partes[0];
-                String hora = partes[1];
-                String fecha = partes[2];
-                
-                usuarioDTO = new UsuarioAccesoInstalacionesDTO(codigo, hora, fecha);
-                usuariosAcceso.add(usuarioDTO);
+                String area = partes[1];
+                String hora = partes[2];
+                String fecha = partes[3];
+                boolean acceso = Boolean.parseBoolean(partes[4]);
+                if(acceso==true){
+                    usuarioDTO = new UsuarioAccesoInstalacionesDTO(codigo, hora, fecha);
+                    usuariosAcceso.add(usuarioDTO);
+                }
                 
             }
             archivo.cerrarArchivo();
@@ -75,17 +83,21 @@ public class listarUsuariosImpl extends UnicastRemoteObject implements listarUsu
         System.out.println(file.getAbsolutePath());
 
         try {
-            archivo.abrirArchivo("../src/acceso/archivos/solicitudesDeAcceso.txt",false,false);
+            archivo.abrirArchivo("../src/acceso/archivos/solicitudes/solicitudesDeNoAcceso.txt",false,false);
             while(archivo.puedeLeer()){
                 String datos = archivo.leerArchivo();
                 // datos: admin;root
-                String[] partes = datos.split(";");
+                String[] partes = datos.split("_");
                 String codigo = partes[0];
-                String hora = partes[1];
-                String fecha = partes[2];
+                String area = partes[1];
+                String hora = partes[2];
+                String fecha = partes[3];
+                boolean acceso = Boolean.parseBoolean(partes[4]);
                 
-                usuarioDTO = new UsuarioAccesoInstalacionesDTO(codigo, hora, fecha);
-                usuariosNoAcceso.add(usuarioDTO);
+                if(acceso==false){
+                    usuarioDTO = new UsuarioAccesoInstalacionesDTO(codigo, hora, fecha);
+                    usuariosNoAcceso.add(usuarioDTO);
+                }
                 
             }
             archivo.cerrarArchivo();

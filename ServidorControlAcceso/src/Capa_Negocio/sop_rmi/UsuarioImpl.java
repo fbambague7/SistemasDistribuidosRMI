@@ -16,16 +16,18 @@ import java.rmi.server.UnicastRemoteObject;
 public class UsuarioImpl extends UnicastRemoteObject implements UsuarioInt {
     
     UsuarioDTO usuarioDTO;
+    UsuarioDAO usuarioDAO;
     private CallbackInt Callback;
     private estaUsuariosInt consultar;
 
     protected UsuarioImpl() throws RemoteException {
         super();
         usuarioDTO = new UsuarioDTO();
+        usuarioDAO = new UsuarioDAO();
     }
 
     @Override
-    public UsuarioDTO solicitarAcceso(String codigo, String clave, String Area) throws RemoteException {
+    public UsuarioDTO solicitarAcceso(String codigo, String clave, String area) throws RemoteException {
         usuarioDTO = null;
         usuarioDTO=consultar.esUsuarioRegistrado(codigo);
         return usuarioDTO;                
@@ -34,6 +36,10 @@ public class UsuarioImpl extends UnicastRemoteObject implements UsuarioInt {
     @Override
     public void notificar(String rol, String nombre) throws RemoteException{
         Callback.notificarIngresoUsuario(rol, nombre);
+    }
+    
+    public void guardarArchivo(String codigo, String area, boolean acceso) throws RemoteException{
+            usuarioDAO.solicitar(codigo, area, acceso);
     }
 
     

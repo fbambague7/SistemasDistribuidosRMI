@@ -112,12 +112,12 @@ public class Inicio extends javax.swing.JFrame {
         
         administradorCAImpl objRemoto = null;
         listarUsuariosImpl objRemotoListar = null;
-        //CallbackImpl objRemotoCallback = null;
+        CallbackImpl objRemotoCallback = null;
         
         try {
             objRemoto = new administradorCAImpl();
             objRemotoListar = new listarUsuariosImpl();
-            //objRemotoCallback = new CallbackImpl();
+            objRemotoCallback = new CallbackImpl();
         } catch (RemoteException ex) {
             Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -129,16 +129,16 @@ public class Inicio extends javax.swing.JFrame {
            UtilidadesRegistroS.RegistrarObjetoRemoto(objRemoto, direccionIpRMIRegistry, numPuertoRMIRegistry, "objRemotoUsuario");           
            
            //Usuario
-           UtilidadesRegistroS.arrancarNS(numPuertoRMIRegistry);
+           //UtilidadesRegistroS.arrancarNS(numPuertoRMIRegistry);
            UtilidadesRegistroS.RegistrarObjetoRemoto(objRemoto, direccionIpRMIRegistry, numPuertoRMIRegistry, "objRemotoAdminCA");           
            
            //Listar
-           UtilidadesRegistroS.arrancarNS(numPuertoRMIRegistry);
+           //UtilidadesRegistroS.arrancarNS(numPuertoRMIRegistry);
            UtilidadesRegistroS.RegistrarObjetoRemoto(objRemotoListar, direccionIpRMIRegistry, numPuertoRMIRegistry, "ObjRemotoListar");           
            
            //Callback
            //UtilidadesRegistroS.arrancarNS(numPuertoRMIRegistry);
-           //UtilidadesRegistroS.RegistrarObjetoRemoto(objRemotoCallback, direccionIpRMIRegistry, numPuertoRMIRegistry, "ObjRemotoCallback");           
+           UtilidadesRegistroS.RegistrarObjetoRemoto(objRemotoCallback, direccionIpRMIRegistry, numPuertoRMIRegistry, "ObjRemotoCallback");           
       
 	    } catch (Exception e)
         {

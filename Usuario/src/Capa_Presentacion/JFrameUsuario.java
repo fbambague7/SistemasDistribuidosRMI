@@ -24,12 +24,12 @@ public class JFrameUsuario extends javax.swing.JFrame {
     /**
      * 
      */
-    public static UsuarioInt objRemoto;
+    public static UsuarioInt objRemotoUsuario;
 
     private static Inicio nuevo = new Inicio();
 
-    public JFrameUsuario(UsuarioInt objRemoto) {
-        this.objRemoto = objRemoto;
+    public JFrameUsuario(UsuarioInt objRemotoUsuario) {
+        this.objRemotoUsuario = objRemotoUsuario;
         initComponents();
       //  iniciar();
 
@@ -58,6 +58,7 @@ public class JFrameUsuario extends javax.swing.JFrame {
         Solicitar = new javax.swing.JButton();
         txtCod = new javax.swing.JTextField();
         txtClave = new javax.swing.JTextField();
+        btnSalir = new javax.swing.JButton();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -98,6 +99,8 @@ public class JFrameUsuario extends javax.swing.JFrame {
             }
         });
 
+        btnSalir.setText("Salir");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -105,30 +108,35 @@ public class JFrameUsuario extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(91, 91, 91)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblCal2)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(Solicitar)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(lblCal3)
-                                        .addComponent(lblCal1))
-                                    .addGap(76, 76, 76)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(txtCod)
-                                        .addComponent(txtClave)
-                                        .addComponent(txtArea, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(172, 172, 172)
                         .addComponent(lblCalExp))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(190, 190, 190)
                         .addComponent(jLabel3)))
-                .addContainerGap(108, Short.MAX_VALUE))
+                .addContainerGap(536, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(btnVolver)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(91, 91, 91)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblCal2)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(Solicitar)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(lblCal3)
+                                            .addComponent(lblCal1))
+                                        .addGap(76, 76, 76)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(txtCod)
+                                            .addComponent(txtClave)
+                                            .addComponent(txtArea, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnSalir))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnVolver)))
                 .addGap(43, 43, 43))
         );
         layout.setVerticalGroup(
@@ -151,7 +159,9 @@ public class JFrameUsuario extends javax.swing.JFrame {
                     .addComponent(txtArea, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblCal3))
                 .addGap(33, 33, 33)
-                .addComponent(Solicitar)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Solicitar)
+                    .addComponent(btnSalir))
                 .addGap(26, 26, 26)
                 .addComponent(btnVolver)
                 .addGap(39, 39, 39))
@@ -197,18 +207,21 @@ public class JFrameUsuario extends javax.swing.JFrame {
             */
             
             UsuarioDTO usuario;
-            usuario = objRemoto.solicitarAcceso(codigo, clave, area);
+            usuario = objRemotoUsuario.solicitarAcceso(codigo, clave, area);
             
             if (usuario==null){
                 JOptionPane.showMessageDialog(null, "¡Acceso denegado código o clave inválidos, " +
                         "por favor contacte al administrador de la aplicación!");
             }else if (area.equalsIgnoreCase(usuario.getArea().toString())){
                 //Traer la informacion desde el control
-                JOptionPane.showMessageDialog(null, "¡Acceso Al area "+area+" denegada");
+                JOptionPane.showMessageDialog(null, "¡Acceso Al area "+area+" denegada \n"
+                        + usuario.getRol()+"\n"+usuario.getNombres()+"\n"+usuario);
+                objRemotoUsuario.guardarArchivo(codigo, area, false);
             }else if (area.equalsIgnoreCase(usuario.getArea().toString())){
                 //Traer la informacion desde el control
-                JOptionPane.showMessageDialog(null, "¡Acceso Al area "+area+" concedida");
-                objRemoto.notificar("rol", "nombre");
+                JOptionPane.showMessageDialog(null, "¡Acceso Al area "+area+" concedida\n"
+                        + usuario.getRol()+"\n"+usuario.getNombres()+"\n"+usuario);
+                objRemotoUsuario.guardarArchivo(codigo, area, true);
             }
             
         } catch (RemoteException ex) {
@@ -520,6 +533,7 @@ public class JFrameUsuario extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Solicitar;
+    private javax.swing.JButton btnSalir;
     private javax.swing.JButton btnVolver;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane2;

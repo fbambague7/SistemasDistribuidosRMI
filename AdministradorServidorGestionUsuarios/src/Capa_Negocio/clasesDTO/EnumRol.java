@@ -9,6 +9,7 @@ package Capa_Negocio.clasesDTO;
  *
  * @author JULIAN
  */
-class EnumRol {
+public enum EnumRol {
+    administrativo, docente, estudiante;
     
 }

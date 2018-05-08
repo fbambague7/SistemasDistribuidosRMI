@@ -198,7 +198,7 @@ public class JFrameAdminCAListar extends javax.swing.JFrame {
        for(int i=0;i<usuarios.size();i++)
         {
             matriz[i][0]=usuarios.get(i).getCodigo();
-            //matriz[i][1]=usuarios.get(i).getArea();
+            matriz[i][1]=usuarios.get(i).getArea().toString();
             matriz[i][2]=usuarios.get(i).getHoraEntrada();
             matriz[i][3]=usuarios.get(i).getFechaEntrada();
             

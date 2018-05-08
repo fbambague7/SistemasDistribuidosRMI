@@ -12,8 +12,4 @@ public interface listarUsuariosInt extends Remote {
     public ArrayList<UsuarioAccesoInstalacionesDTO> listarUsuariosAcceso() throws RemoteException;
     public ArrayList<UsuarioAccesoInstalacionesDTO> listarUsuariosNoAcceso() throws RemoteException;
     
-    /*
-    public ArrayList<UsuarioDTO> listarUsuariosAcceso() throws RemoteException;
-    public ArrayList<UsuarioDTO> listarUsuariosNoAcceso() throws RemoteException;
-    */
 }

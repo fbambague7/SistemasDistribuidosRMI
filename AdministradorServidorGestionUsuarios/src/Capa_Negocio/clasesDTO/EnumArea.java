@@ -9,6 +9,7 @@ package Capa_Negocio.clasesDTO;
  *
  * @author JULIAN
  */
-class EnumArea {
+public enum EnumArea {
+    norte, sur, este, oeste;
     
 }

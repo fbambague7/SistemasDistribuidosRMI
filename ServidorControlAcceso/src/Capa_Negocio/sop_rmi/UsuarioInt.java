@@ -11,4 +11,5 @@ import java.rmi.RemoteException;
 public interface UsuarioInt extends Remote{
     public UsuarioDTO solicitarAcceso(String codigo, String clave, String Area) throws RemoteException;
     public void notificar(String rol, String nombre)throws RemoteException;
+    public void guardarArchivo(String codigo, String area, boolean acceso) throws RemoteException;
 }

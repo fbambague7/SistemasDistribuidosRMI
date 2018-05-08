@@ -8,8 +8,10 @@ import java.io.Serializable;
  */
 public class UsuarioAccesoInstalacionesDTO implements Serializable{
     private String codigo;
+    private String area;
     private String horaEntrada;
     private String fechaEntrada;
+    private boolean acceso;
     
     public UsuarioAccesoInstalacionesDTO(String codigo, String horaEntrada, String fechaEntrada) {
         this.codigo = codigo;
@@ -24,6 +26,16 @@ public class UsuarioAccesoInstalacionesDTO implements Serializable{
     public void setCodigo(String codigo) {
         this.codigo = codigo;
     }
+
+    public String getArea() {
+        return area;
+    }
+
+    public void setArea(String area) {
+        this.area = area;
+    }
+    
+    
 
     public String getHoraEntrada() {
         return horaEntrada;
@@ -40,5 +52,14 @@ public class UsuarioAccesoInstalacionesDTO implements Serializable{
     public void setFechaEntrada(String fechaEntrada) {
         this.fechaEntrada = fechaEntrada;
     }
+    
+    public boolean isAcceso() {
+        return acceso;
+    }
+
+    public void setAcceso(boolean acceso) {
+        this.acceso = acceso;
+    }
+    
 }
 

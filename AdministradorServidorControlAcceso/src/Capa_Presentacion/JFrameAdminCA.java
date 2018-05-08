@@ -79,7 +79,7 @@ public class JFrameAdminCA extends javax.swing.JFrame {
             }
         });
 
-        jLabel3.setText("USUARIO");
+        jLabel3.setText("ADMINISTRADOR CA");
 
         lblCalExp.setText("Solicitar Acceso");
 

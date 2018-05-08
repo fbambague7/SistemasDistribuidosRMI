@@ -25,7 +25,7 @@ public class administradorCAImpl extends UnicastRemoteObject implements administ
     @Override
     public boolean loginAdministrador(AdministradorDTO AdministradorDTO) throws RemoteException {
         System.out.println("Invocando iniciarSesion()...");
-        return AdministradorDAO.iniciarSesion(AdministradorDTO,archivo);
+        return administradorDAO.iniciarSesion(AdministradorDTO,archivo);
     }    
 
     @Override
