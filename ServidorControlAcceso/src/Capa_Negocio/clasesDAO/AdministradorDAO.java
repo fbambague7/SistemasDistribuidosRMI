@@ -25,7 +25,7 @@ public class AdministradorDAO {
     public AdministradorDAO() {
     }
 
-    public boolean iniciarSesion(AdministradorDTO objAdminControlES, Archivo archivo){
+    public boolean iniciarSesion(AdministradorDTO objAdminCA, Archivo archivo){
 
         boolean acceso = false;
 
@@ -37,8 +37,8 @@ public class AdministradorDAO {
                 String[] partes = datos.split("_");
                 String login = partes[0];
                 String clave = partes[1];
-                if(login.equals(objAdminControlES.getLogin()) &&
-                        clave.equals(objAdminControlES.getClave())){
+                if(login.equals(objAdminCA.getLogin()) &&
+                        clave.equals(objAdminCA.getClave())){
                     acceso = true;
                 }
             }
@@ -54,13 +54,13 @@ public class AdministradorDAO {
 
     }
 
-    public boolean modificarAdmin(AdministradorDTO objAdminControlES, Archivo archivo){
+    public boolean modificarAdmin(AdministradorDTO objAdminCA, Archivo archivo){
         boolean modificado = false;
 
         try {
             archivo.abrirArchivo(path,true,false);
-            archivo.escribirArchivo(objAdminControlES.getLogin() + "_"
-                    + objAdminControlES.getClave());
+            archivo.escribirArchivo(objAdminCA.getLogin() + "_"
+                    + objAdminCA.getClave());
             archivo.cerrarArchivo();
             modificado = true;
         } catch (IOException e) {
@@ -69,32 +69,6 @@ public class AdministradorDAO {
         return modificado;
     }
 
-    public ArrayList<UsuarioAccesoInstalacionesDTO> listarUsuariosEnInstalaciones(){
-        String directorio = "../src/acceso/archivos/instalaciones";
-        ArrayList<UsuarioAccesoInstalacionesDTO> lista = new ArrayList<>();
-        UsuarioAccesoInstalacionesDTO user = new UsuarioAccesoInstalacionesDTO();
-        
-        try{
-            File f = new File(directorio);
-            File[] ficheros = f.listFiles();
-            for (int i=0;i<ficheros.length;i++){
-                try {
-                    FileReader archivo = new FileReader(ficheros[i].getName());
-                    BufferedReader b = new BufferedReader(archivo);
-                    user.setCodigo(b.readLine());
-                    user.setHoraEntrada(b.readLine());
-                    user.setFechaEntrada(b.readLine());
-                    b.close();
-                    lista.add(user);
-                } catch (FileNotFoundException ex) {
-                    System.out.println("ERROR. El archivo no ha sido encontrado " + ex.getMessage());
-                }
-            }
-        } catch (IOException e) {
-            System.out.println("ERROR. Se ha producido un error al leer el archivo " + e.getMessage());
-        }
-        return lista;
-    }
 
     
     

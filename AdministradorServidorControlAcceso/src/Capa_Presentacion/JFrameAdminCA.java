@@ -61,6 +61,7 @@ public class JFrameAdminCA extends javax.swing.JFrame {
         btnIngresar = new javax.swing.JButton();
         txtLog = new javax.swing.JTextField();
         txtClave = new javax.swing.JTextField();
+        btnModAdmin = new javax.swing.JButton();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -99,6 +100,13 @@ public class JFrameAdminCA extends javax.swing.JFrame {
             }
         });
 
+        btnModAdmin.setText("Modificar");
+        btnModAdmin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModAdminActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -110,7 +118,10 @@ public class JFrameAdminCA extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblCal2)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(btnIngresar)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(btnModAdmin)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(btnIngresar))
                                 .addGroup(layout.createSequentialGroup()
                                     .addComponent(lblCal1)
                                     .addGap(76, 76, 76)
@@ -147,7 +158,9 @@ public class JFrameAdminCA extends javax.swing.JFrame {
                     .addComponent(lblCal2)
                     .addComponent(txtClave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(29, 29, 29)
-                .addComponent(btnIngresar)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnIngresar)
+                    .addComponent(btnModAdmin))
                 .addGap(26, 26, 26)
                 .addComponent(btnVolver)
                 .addGap(78, 78, 78))
@@ -203,6 +216,12 @@ public class JFrameAdminCA extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_btnIngresarActionPerformed
+
+    private void btnModAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModAdminActionPerformed
+        JFrameModificar obMod = new JFrameModificar(objRemotoAdminCA);
+        obMod.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btnModAdminActionPerformed
 
     /*
     public void notificar(String mensaje)
@@ -777,6 +796,7 @@ public class JFrameAdminCA extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnIngresar;
+    private javax.swing.JButton btnModAdmin;
     private javax.swing.JButton btnVolver;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane2;

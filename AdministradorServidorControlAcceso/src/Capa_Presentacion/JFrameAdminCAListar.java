@@ -26,8 +26,8 @@ public class JFrameAdminCAListar extends javax.swing.JFrame {
      * Creates new form JFrameDocente
      */
     public static listarUsuariosInt objRemotoListar;
-    ArrayList<UsuarioAccesoInstalacionesDTO> usuariosAcceso = new ArrayList<UsuarioAccesoInstalacionesDTO>();
-    ArrayList<UsuarioAccesoInstalacionesDTO> usuariosNoAcceso = new ArrayList<UsuarioAccesoInstalacionesDTO>();
+    ArrayList<UsuarioAccesoInstalacionesDTO> usuariosAcceso;
+    ArrayList<UsuarioAccesoInstalacionesDTO> usuariosNoAcceso;
 
     private static Inicio nuevo = new Inicio();
 
@@ -118,7 +118,7 @@ public class JFrameAdminCAListar extends javax.swing.JFrame {
 
         jLabel4.setText("ADMINISTRADOR CONTROL ACCESO");
 
-        lblMensaje.setText("-");
+        lblMensaje.setText("Cantidad de Usuarios");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -127,6 +127,9 @@ public class JFrameAdminCAListar extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(267, 267, 267)
+                        .addComponent(jLabel4))
+                    .addGroup(layout.createSequentialGroup()
                         .addGap(64, 64, 64)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnNoApr)
@@ -134,10 +137,9 @@ public class JFrameAdminCAListar extends javax.swing.JFrame {
                                 .addGap(9, 9, 9)
                                 .addComponent(btnAprobado)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 507, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(267, 267, 267)
-                        .addComponent(jLabel4)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblMensaje)
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 507, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(83, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -148,10 +150,6 @@ public class JFrameAdminCAListar extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(btnVolver)
                         .addGap(51, 51, 51))))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(328, 328, 328)
-                .addComponent(lblMensaje)
-                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -167,9 +165,9 @@ public class JFrameAdminCAListar extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(btnNoApr))
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
                 .addComponent(lblMensaje)
-                .addGap(15, 15, 15)
+                .addGap(24, 24, 24)
                 .addComponent(btnVolver)
                 .addGap(27, 27, 27))
         );
@@ -179,6 +177,7 @@ public class JFrameAdminCAListar extends javax.swing.JFrame {
 
     private void btnAprobadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAprobadoActionPerformed
         try {
+            usuariosAcceso = new ArrayList<UsuarioAccesoInstalacionesDTO>();
             usuariosAcceso.addAll(nuevo.objRemotoListar.listarUsuariosAcceso());
             mostrar(usuariosAcceso);
         } catch (RemoteException ex) {
@@ -197,6 +196,7 @@ public class JFrameAdminCAListar extends javax.swing.JFrame {
 
     private void btnNoAprActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNoAprActionPerformed
         try {
+            usuariosNoAcceso = new ArrayList<UsuarioAccesoInstalacionesDTO>();
             usuariosNoAcceso.addAll(nuevo.objRemotoListar.listarUsuariosNoAcceso());
             mostrar(usuariosNoAcceso);
         } catch (RemoteException ex) {
@@ -226,6 +226,8 @@ public class JFrameAdminCAListar extends javax.swing.JFrame {
            "Codigo","Area","Hora Peticion","Fecha Peticion"
        }));
        
+        contarUsuarios(usuarios.size());
+       
         /*
         String matriz[][]=new String[usuariosAcceso.size()][5];
         
@@ -248,6 +250,10 @@ public class JFrameAdminCAListar extends javax.swing.JFrame {
         */
         
     }
+    
+    public void contarUsuarios(int numero){
+        lblMensaje.setText("Cantidad de Usuarios: "+numero);
+    }
 
     
     public void iniciar() {
@@ -260,9 +266,9 @@ public class JFrameAdminCAListar extends javax.swing.JFrame {
     
      public void notificar(String mensaje)
     {
-        System.out.println(mensaje);
+        //System.out.println(mensaje);
         JOptionPane.showMessageDialog(null, mensaje);
-        lblMensaje.setText(mensaje);
+        //lblMensaje.setText(mensaje);
     }    
 
     /**
