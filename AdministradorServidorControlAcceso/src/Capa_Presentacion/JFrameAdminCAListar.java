@@ -31,12 +31,13 @@ public class JFrameAdminCAListar extends javax.swing.JFrame {
 
     private static Inicio nuevo = new Inicio();
 
-    public JFrameAdminCAListar(/*UsuarioInt objRemoto*/) throws RemoteException {
+    public JFrameAdminCAListar() throws RemoteException {
         //this.objRemoto = objRemoto;
         CallbackImpl objRemotoDelLadoAdministrador= new CallbackImpl(this);
-        UtilidadesRegistroC.RegistrarObjetoRemoto(objRemotoDelLadoAdministrador, "localhost", 2020, "objRemotoCallback");
-        //.registrarObremti(objRemotoDelLadoAdministrador);
         
+        //UtilidadesRegistroC.RegistrarObjetoRemoto(objRemotoDelLadoAdministrador, "localhost", 2020, "objRemotoCallback");
+        UsuarioInt objRemotoUsuario= (UsuarioInt) UtilidadesRegistroC.ObtenerObjRemoto(2020, "localhost", "objRemotoUsuario");
+        objRemotoUsuario.registrarCallback(objRemotoDelLadoAdministrador);
         initComponents();
         //iniciar();
 

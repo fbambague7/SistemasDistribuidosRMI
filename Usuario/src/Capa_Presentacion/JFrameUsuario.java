@@ -223,7 +223,8 @@ public class JFrameUsuario extends javax.swing.JFrame {
             UsuarioDTO usuario;
             usuario = objRemotoUsuario.solicitarAcceso(codigo, clave, area);
             
-            if (usuario==null){
+            if (usuario==null
+                    ||(!clave.equalsIgnoreCase(usuario.getClave())&&!codigo.equalsIgnoreCase(usuario.getCodigo()))){
                 JOptionPane.showMessageDialog(null, "¡Acceso denegado código o clave inválidos, " +
                         "por favor contacte al administrador de la aplicación!");
             }else if (!area.equalsIgnoreCase(usuario.getArea().toString())){
@@ -235,7 +236,7 @@ public class JFrameUsuario extends javax.swing.JFrame {
                 //Traer la informacion desde el control
                 JOptionPane.showMessageDialog(null, "¡Acceso Al area "+area+" concedida\n"
                         + usuario.getRol()+"\n"+usuario.getNombres());
-                objRemotoUsuario.notificar("rol", usuario.getNombres());
+                objRemotoUsuario.notificar(usuario.getRol().toString(), usuario.getNombres());
                 objRemotoUsuario.guardarArchivo(codigo, area, true);
             }
             

@@ -52,7 +52,13 @@ public class UsuarioImpl extends UnicastRemoteObject implements UsuarioInt {
         } catch (IOException ex) {
             Logger.getLogger(UsuarioImpl.class.getName()).log(Level.SEVERE, null, ex);
         }
-}
+    }   
+   public void registrarCallback(CallbackInt objRemoto)throws RemoteException
+        {
+            System.out.println("invocando a registrar");
+            Callback=objRemoto;
+        }
+
 
     
 }

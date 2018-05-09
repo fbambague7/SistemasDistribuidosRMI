@@ -2,6 +2,9 @@ package Capa_Presentacion;
 
 import Capa_Servicios.UtilidadesRegistroC;
 import Capa_Negocio.sop_rmi.*;
+import java.rmi.RemoteException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -118,10 +121,22 @@ public class Inicio extends javax.swing.JFrame {
         
         //objRemotoCallback = (CallbackInt) UtilidadesRegistroC.ObtenerObjRemoto(numPuertoRMIRegistry, direccionIpRMIRegistry, "ObjRemotoCallback");
           
-         
+        
         JFrameAdminCA ob1 = new JFrameAdminCA(objRemotoAdminCA);
         ob1.setVisible(true);
         dispose();
+        
+        
+        /*try{
+        JFrameAdminCAListar ob1 = new JFrameAdminCAListar(/*objRemotoListar*//*);
+                    ob1.setVisible(true);
+                    dispose();
+                    
+                    
+        } catch (RemoteException ex) {
+            Logger.getLogger(JFrameAdminCA.class.getName()).log(Level.SEVERE, null, ex);
+        }*/
+        
     }//GEN-LAST:event_btnConectarActionPerformed
 
     private void DireccionIpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DireccionIpActionPerformed

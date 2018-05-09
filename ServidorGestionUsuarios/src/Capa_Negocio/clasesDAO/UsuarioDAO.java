@@ -81,6 +81,7 @@ public class UsuarioDAO {
         String clave;
         String area;
         String ruta="../src/Capa_Acceso/usuarios/usuario_";
+        //String ruta="C:/Users/USUARIO/Documents/GitHub/SistemasDistribuidosRMI/ServidorGestionUsuarios/src/Capa_Acceso/usuarios/usuario_";
         ruta+=codigo;
         ruta+=".txt";
 
@@ -157,6 +158,7 @@ public class UsuarioDAO {
     public UsuarioDTO consultarUsuario1(String codigo, String clave, String area){
         boolean existe;
         String ruta="../src/Capa_Acceso/usuarios/usuario_";
+        //String ruta="C:/Users/USUARIO/Documents/GitHub/SistemasDistribuidosRMI/ServidorGestionUsuarios/src/Capa_Acceso/usuarios/usuario_";
         ruta+=codigo;
         ruta+=".txt";
 
