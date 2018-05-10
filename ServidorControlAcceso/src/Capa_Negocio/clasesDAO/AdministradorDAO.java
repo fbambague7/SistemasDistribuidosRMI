@@ -33,7 +33,6 @@ public class AdministradorDAO {
             archivo.abrirArchivo(path,false,false);
             if (archivo.puedeLeer()){
                 String datos = archivo.leerArchivo();
-                // datos: admin;root
                 String[] partes = datos.split("_");
                 String login = partes[0];
                 String clave = partes[1];

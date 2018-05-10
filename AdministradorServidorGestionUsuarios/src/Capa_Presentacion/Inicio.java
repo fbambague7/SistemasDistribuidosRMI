@@ -109,14 +109,7 @@ public class Inicio extends javax.swing.JFrame {
          
         objRemotoGU = (administradorGUint) UtilidadesRegistroC.obtenerObjRemoto(numPuertoRMIRegistry, direccionIpRMIRegistry, "objRemotoGU");
         
-        
-        //objeto remoto Interfas Listar
-        //numPuertoRMIRegistry = (Integer.parseInt(this.NumPuerto.getText()));
-        //direccionIpRMIRegistry = this.DireccionIp.getText();
         objRemotoGestion = (gestionUsuariosInt) UtilidadesRegistroC.obtenerObjRemoto(numPuertoRMIRegistry, direccionIpRMIRegistry, "objRemotoGestion");
-        
-        
-          
          
         JFrameAdminGU ob1 = new JFrameAdminGU(objRemotoGU);
         ob1.setVisible(true);

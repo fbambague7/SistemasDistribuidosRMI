@@ -29,63 +29,57 @@ public class UsuarioDAO {
     Archivo archivo = new Archivo();
 
     public UsuarioDAO() {
-        usuariosAcceso = new ArrayList<>();
-        usuariosNoAcceso = new ArrayList<>();
     }
 
     public boolean solicitar(String codigo, String area, boolean acceso) throws IOException {
         boolean dentro = false;
         ArrayList<String> datosArc = new ArrayList<>();
-        
+        datosArc = new ArrayList<>();
         String path = "";
         String datos = "";
-        String nuevo = "";
+        
 
         if (acceso == true) {
             path = "../src/Capa_Acceso/solicitudes/solicitudesDeAcceso.txt";
         } else {
             path = "../src/Capa_Acceso/solicitudes/solicitudesDeNoAcceso.txt";
         }
-        
-        
+
         archivo.abrirArchivo(path, false, false);
         while (archivo.puedeLeer()) {
-                datos = archivo.leerArchivo();
-                String[] partes = datos.split("\n");
-                for(int i=0;i<partes.length;i++){
+            datos = archivo.leerArchivo();
+            String[] partes = datos.split("\n");
+            
+            if (partes != null) {
+                
+                for (int i = 0; i < partes.length; i++) {
+                    
                     datosArc.add(partes[i]);
-                    //System.out.println("datos "+datosArc.get(i));
                 }
+            }
         }
         archivo.cerrarArchivo();
-        
-        
+        archivo.abrirArchivo(path,true,true);
+        String nuevo = "";
         try {
-            File archivo = new File(path);
-            if (archivo.exists()) {
                 Calendar calendario = new GregorianCalendar();
-                BufferedWriter bw;
-                try {
-                    
-                    bw = new BufferedWriter(new FileWriter(archivo));
+
                     nuevo = codigo + "_" + area + "_" + calendario.get(Calendar.HOUR) + "_" + calendario.get(Calendar.DAY_OF_MONTH)
-                            + " de " + getMes(calendario.get(Calendar.MONTH)) + " de " + calendario.get(Calendar.YEAR);
-                    //datos += nuevo;
+                            + " de " + getMes(calendario.get(Calendar.MONTH)) + " de " + calendario.get(Calendar.YEAR) + nuevo;
+
                     datosArc.add(nuevo);
-                    
-                    for(int i=0;i<datosArc.size();i++){
-                        bw.write(datosArc.get(i));
-                        bw.newLine();
-                        //bw.write(nuevo);
-                    }
-                    
-                    bw.close();
-                } catch (IOException ex) {
-                    System.out.println("ERROR! Se ha producido un error al crear el archivo " + ex.getMessage());
-                }
-                dentro = true;
-            }
             
+                    /*
+                    for (int i = 0; i < datosArc.size(); i++) {
+                        archivo.escribirArchivo(datosArc.get(i));
+                    } 
+                    */
+                    archivo.escribirArchivo(nuevo);
+                    archivo.cerrarArchivo();
+
+                dentro = true;
+
+
         } catch (Exception e) {
             System.out.println("ERROR! Se ha producido un error al crear el archivo " + e.getMessage());
         }
@@ -94,6 +88,7 @@ public class UsuarioDAO {
 
     public ArrayList<UsuarioAccesoInstalacionesDTO> UsuariosAcceso() {
         System.out.println("Nueva Instancia de Archivo()");
+        usuariosAcceso = new ArrayList<>();
         File file = new File(".");
         System.out.println(file.getAbsolutePath());
 
@@ -102,7 +97,6 @@ public class UsuarioDAO {
             //String path = "../src/acceso/archivos/solicitudes/solicitudesDeAcceso_" + codigo + ".txt";
             while (archivo.puedeLeer()) {
                 String datos = archivo.leerArchivo();
-                // datos: admin;root
                 String[] partes = datos.split("_");
                 String codigo = partes[0];
                 String area = partes[1];
@@ -110,8 +104,8 @@ public class UsuarioDAO {
                 String fecha = partes[3];
                 //boolean acceso = Boolean.parseBoolean(partes[4]);
                 //if (acceso == true) {
-                    usuarioDTO = new UsuarioAccesoInstalacionesDTO(codigo, area, hora, fecha);
-                    usuariosAcceso.add(usuarioDTO);
+                usuarioDTO = new UsuarioAccesoInstalacionesDTO(codigo, area, hora, fecha);
+                usuariosAcceso.add(usuarioDTO);
                 //}
 
             }
@@ -127,6 +121,7 @@ public class UsuarioDAO {
 
     public ArrayList<UsuarioAccesoInstalacionesDTO> UsuariosNoAcceso() {
         System.out.println("Nueva Instancia de Archivo()");
+        usuariosNoAcceso = new ArrayList<>();
         File file = new File(".");
         System.out.println(file.getAbsolutePath());
 
@@ -134,17 +129,15 @@ public class UsuarioDAO {
             archivo.abrirArchivo("../src/Capa_Acceso/solicitudes/solicitudesDeNoAcceso.txt", false, false);
             while (archivo.puedeLeer()) {
                 String datos = archivo.leerArchivo();
-                // datos: admin;root
                 String[] partes = datos.split("_");
                 String codigo = partes[0];
                 String area = partes[1];
                 String hora = partes[2];
                 String fecha = partes[3];
                 //boolean acceso = Boolean.parseBoolean(partes[4]);
-
                 //if (acceso == false) {
-                    usuarioDTO = new UsuarioAccesoInstalacionesDTO(codigo, area, hora, fecha);
-                    usuariosNoAcceso.add(usuarioDTO);
+                usuarioDTO = new UsuarioAccesoInstalacionesDTO(codigo, area, hora, fecha);
+                usuariosNoAcceso.add(usuarioDTO);
                 //}
 
             }
@@ -156,29 +149,6 @@ public class UsuarioDAO {
             System.out.println("ERROR! Se ha producido un error al leer el archivo " + e.getMessage());
         }
         return usuariosNoAcceso;
-    }
-
-    public boolean salirDeLasInstalaciones(String codigo) {
-        String path = "../src/acceso/archivos/instalaciones/usuario_" + codigo + ".txt";
-        boolean dentro = false;
-        try {
-            File fichero = new File(path);
-            fichero.delete();
-            dentro = true;
-        } catch (Exception e) {
-            dentro = false;
-        }
-        return dentro;
-    }
-
-    public boolean esUsuarioRegistrado(String codigo) {
-        String path = "../src/acceso/archivos/instalaciones/usuario_" + codigo + ".txt";
-        File archivo = new File(path);
-        if (archivo.exists()) {
-            return true;
-        } else {
-            return false;
-        }
     }
 
     private String getMes(int mes) {

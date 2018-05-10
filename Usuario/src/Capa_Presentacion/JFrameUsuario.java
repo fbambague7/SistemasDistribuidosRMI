@@ -22,7 +22,7 @@ import Capa_Negocio.sop_rmi.*;
 public class JFrameUsuario extends javax.swing.JFrame {
 
     /**
-     * 
+     *
      */
     public static UsuarioInt objRemotoUsuario;
 
@@ -31,10 +31,9 @@ public class JFrameUsuario extends javax.swing.JFrame {
     public JFrameUsuario(UsuarioInt objRemotoUsuario) {
         this.objRemotoUsuario = objRemotoUsuario;
         initComponents();
-      //  iniciar();
+        //  iniciar();
 
         //String nombreDireccion = "C:\\Users\\PC-USUARIO\\Documents\\NetBeansProjects\\EjemploFichero\\src\\archivos\\Administrador.txt";//"C:\\Users\\PC-USUARIO\\Desktop\\DocenteCatedra.txt";
-
     }
 
     /**
@@ -191,58 +190,47 @@ public class JFrameUsuario extends javax.swing.JFrame {
 
     private void SolicitarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SolicitarActionPerformed
 
-        try {
-            String codigo;
-            String clave;
-            String area;
-            //EnumArea area;
-            
-            codigo = this.txtCod.getText();
-            clave = this.txtClave.getText();
-            
-            area=cbArea.getSelectedItem().toString();
-            
-            
-            /*
-            switch (areatxt) {
-                case "norte":
-                    area = EnumArea.norte;
-                    break;
-                case "sur":
-                    area = EnumArea.sur;
-                    break;
-                case "este":
-                    area = EnumArea.este;
-                    break;
-                case "oeste":
-                    area = EnumArea.oeste;
-                    break;
+        boolean indCod = false;
+
+        String codigo;
+        String clave;
+        String area;
+        //EnumArea area;
+
+        codigo = this.txtCod.getText();
+        clave = this.txtClave.getText();
+
+        area = cbArea.getSelectedItem().toString();
+
+        indCod = validarCodigo(codigo);
+
+        if (indCod == false) {
+            JOptionPane.showMessageDialog(null, "¡El Codigo debe estar entre 4 y 8 caracteres!");
+        }else{
+            try {
+
+                UsuarioDTO usuario;
+                usuario = objRemotoUsuario.solicitarAcceso(codigo, clave, area);
+
+                if (usuario == null
+                        || (!clave.equalsIgnoreCase(usuario.getClave()) && !codigo.equalsIgnoreCase(usuario.getCodigo()))) {
+                    JOptionPane.showMessageDialog(null, "¡Acceso denegado código o clave inválidos, "
+                            + "por favor contacte al administrador de la aplicación!");
+                } else if (!area.equalsIgnoreCase(usuario.getArea().toString())) {
+                    JOptionPane.showMessageDialog(null, "¡Acceso Al area " + area + " denegada \n"
+                            + usuario.getRol() + "\n" + usuario.getNombres());
+                    objRemotoUsuario.guardarArchivo(codigo, area, false);
+                } else if (area.equalsIgnoreCase(usuario.getArea().toString())) {
+                    JOptionPane.showMessageDialog(null, "¡Acceso Al area " + area + " concedida\n"
+                            + usuario.getRol() + "\n" + usuario.getNombres());
+                    objRemotoUsuario.notificar(usuario.getRol().toString(), usuario.getNombres());
+                    objRemotoUsuario.guardarArchivo(codigo, area, true);
+                }
+            } catch (RemoteException ex) {
+                Logger.getLogger(JFrameUsuario.class.getName()).log(Level.SEVERE, null, ex);
             }
-            */
-            
-            UsuarioDTO usuario;
-            usuario = objRemotoUsuario.solicitarAcceso(codigo, clave, area);
-            
-            if (usuario==null
-                    ||(!clave.equalsIgnoreCase(usuario.getClave())&&!codigo.equalsIgnoreCase(usuario.getCodigo()))){
-                JOptionPane.showMessageDialog(null, "¡Acceso denegado código o clave inválidos, " +
-                        "por favor contacte al administrador de la aplicación!");
-            }else if (!area.equalsIgnoreCase(usuario.getArea().toString())){
-                //Traer la informacion desde el control
-                JOptionPane.showMessageDialog(null, "¡Acceso Al area "+area+" denegada \n"
-                        + usuario.getRol()+"\n"+usuario.getNombres());
-                objRemotoUsuario.guardarArchivo(codigo, area, false);
-            }else if (area.equalsIgnoreCase(usuario.getArea().toString())){
-                //Traer la informacion desde el control
-                JOptionPane.showMessageDialog(null, "¡Acceso Al area "+area+" concedida\n"
-                        + usuario.getRol()+"\n"+usuario.getNombres());
-                objRemotoUsuario.notificar(usuario.getRol().toString(), usuario.getNombres());
-                objRemotoUsuario.guardarArchivo(codigo, area, true);
-            }
-            
-        } catch (RemoteException ex) {
-            Logger.getLogger(JFrameUsuario.class.getName()).log(Level.SEVERE, null, ex);
         }
+
 
     }//GEN-LAST:event_SolicitarActionPerformed
 
@@ -254,6 +242,14 @@ public class JFrameUsuario extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnSalirActionPerformed
 
+    public boolean validarCodigo(String codigo) {
+        boolean validar = false;
+        if (codigo.length() >= 4 && codigo.length() <= 8) {
+            validar = true;
+        }
+        return validar;
+    }
+
     /*
     public void iniciar() {
         this.lblCal1.setVisible(false);
@@ -263,8 +259,7 @@ public class JFrameUsuario extends javax.swing.JFrame {
         this.txtArea.setVisible(false);
         this.Solicitar.setVisible(false);
     }
-    */
-
+     */
     /**
      * @param args the command line arguments
      */

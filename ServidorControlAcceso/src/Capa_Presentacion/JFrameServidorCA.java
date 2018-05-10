@@ -19,26 +19,12 @@ import Capa_Negocio.sop_rmi.*;
  */
 public class JFrameServidorCA extends javax.swing.JFrame  {
     
-    /**
-     * Creates new form JFrameDocente
-     */
     
     private static Inicio nuevo = new Inicio();//GestorAdministradorInt objRemoto;
     
     public JFrameServidorCA() {
         initComponents();
         iniciar();
-        
-            //String nombreDireccion="C:\\Users\\PC-USUARIO\\Documents\\NetBeansProjects\\EjemploFichero\\src\\archivos\\Administrador.txt";//"C:\\Users\\PC-USUARIO\\Desktop\\DocenteCatedra.txt";
-            
-       /*     
-        try {
-            objRemoto.consultarAdministrador(nombreDireccion);
-        } catch (Exception ex) {
-            Logger.getLogger(JFrameDocenteCatedra.class.getName()).log(Level.SEVERE, null, ex);
-        }*/
-           
-            
         
     }
 

@@ -15,11 +15,6 @@ import java.util.logging.Logger;
  */
 public class Inicio extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Inicio
-     */
-    
-    //public static TurnoInt objRemoto;
     
     public Inicio() {
         
@@ -129,17 +124,11 @@ public class Inicio extends javax.swing.JFrame {
            UtilidadesRegistroS.RegistrarObjetoRemoto(objRemotoGU, direccionIpRMIRegistry, numPuertoRMIRegistry, "objRemotoGU");           
            
            //gestion
-           //UtilidadesRegistroS.arrancarNS(numPuertoRMIRegistry);
            UtilidadesRegistroS.RegistrarObjetoRemoto(objRemotoGestion, direccionIpRMIRegistry, numPuertoRMIRegistry, "objRemotoGestion");           
            
            //Listar
-           //UtilidadesRegistroS.arrancarNS(numPuertoRMIRegistry);
            UtilidadesRegistroS.RegistrarObjetoRemoto(objRemotoEsta, direccionIpRMIRegistry, numPuertoRMIRegistry, "objRemotoEsta");           
            
-           //Callback
-           //UtilidadesRegistroS.arrancarNS(numPuertoRMIRegistry);
-           //UtilidadesRegistroS.RegistrarObjetoRemoto(objRemotoEsta, direccionIpRMIRegistry, numPuertoRMIRegistry, "ObjRemotoCallback");           
-      
 	    } catch (Exception e)
         {
             System.err.println("No fue posible Arrancar el NS o Registrar el objeto remoto" +  e.getMessage());
@@ -149,19 +138,6 @@ public class Inicio extends javax.swing.JFrame {
         ob1.setVisible(true);
         dispose();
         
-        /*
-         int numPuertoRMIRegistry = 0;
-         String direccionIpRMIRegistry = "";  
-        
-         numPuertoRMIRegistry = (Integer.parseInt(this.NumPuerto.getText()));
-         direccionIpRMIRegistry = this.DireccionIp.getText();
-         
-          objRemoto = (TurnoInt) UtilidadesRegistroC.obtenerObjRemoto(numPuertoRMIRegistry, direccionIpRMIRegistry, "ObjetoRemotoUsuarios");
-          */
-         
-       /* JFrameDocenteCatedra ob1 = new JFrameDocenteCatedra();
-        ob1.setVisible(true);
-        dispose();*/
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void DireccionIpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DireccionIpActionPerformed

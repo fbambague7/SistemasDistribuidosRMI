@@ -33,13 +33,8 @@ public class JFrameAdminCA extends javax.swing.JFrame {
     public JFrameAdminCA(administradorCAint objRemoto) {
         this.objRemotoAdminCA = objRemoto;
         
-        //CallbackImpl objRemotoDelLadoAdministrador= new CallbackImpl(this);
-        //UtilidadesServidorC.registrarObremti(objRemoto);
-        
         initComponents();
-        //iniciar();
-
-        //String nombreDireccion = "C:\\Users\\PC-USUARIO\\Documents\\NetBeansProjects\\EjemploFichero\\src\\archivos\\Administrador.txt";//"C:\\Users\\PC-USUARIO\\Desktop\\DocenteCatedra.txt";
+        
     }
 
     /**
@@ -200,10 +195,6 @@ public class JFrameAdminCA extends javax.swing.JFrame {
                 if (indAcceso == false) {
                     JOptionPane.showMessageDialog(null, "¡Login o Password Incorrectos!");
                 } else {
-                    /*int numPuertoRMIRegistry = 2020;
-                String direccionIpRMIRegistry = "localhost";
-                objRemotoListar = (listarUsuariosInt) UtilidadesRegistroC.ObtenerObjRemoto(numPuertoRMIRegistry, direccionIpRMIRegistry, "ObjRemotoListar");
-                     */
                     JFrameAdminCAListar ob1 = new JFrameAdminCAListar(/*objRemotoListar*/);
                     ob1.setVisible(true);
                     dispose();
@@ -223,12 +214,6 @@ public class JFrameAdminCA extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_btnModAdminActionPerformed
 
-    /*
-    public void notificar(String mensaje)
-    {
-        System.out.println(mensaje);
-    }
-    */
     
     public boolean validarIngreso(String login, String clave) {
         boolean validar = false;

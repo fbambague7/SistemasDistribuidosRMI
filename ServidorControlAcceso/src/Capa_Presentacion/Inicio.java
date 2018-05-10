@@ -52,6 +52,8 @@ public class Inicio extends javax.swing.JFrame {
         txtPuerto2 = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -82,6 +84,10 @@ public class Inicio extends javax.swing.JFrame {
 
         jLabel4.setText("Puerto");
 
+        jLabel5.setText("Direccion Ip y puerto del Servidor Gestion Usuarios");
+
+        jLabel6.setText("Direccion Ip y puerto del servidor Control Acceso");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -108,14 +114,22 @@ public class Inicio extends javax.swing.JFrame {
                                     .addComponent(txtDireccion2)
                                     .addComponent(txtPuerto2, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(111, 111, 111)
-                        .addComponent(btnConectar, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(177, Short.MAX_VALUE))
+                        .addGap(115, 115, 115)
+                        .addComponent(btnConectar, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(83, 83, 83)
+                        .addComponent(jLabel6))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(82, 82, 82)
+                        .addComponent(jLabel5)))
+                .addContainerGap(84, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(44, 44, 44)
+                .addGap(16, 16, 16)
+                .addComponent(jLabel6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(DireccionIp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
@@ -124,6 +138,8 @@ public class Inicio extends javax.swing.JFrame {
                     .addComponent(NumPuerto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
                 .addGap(18, 18, 18)
+                .addComponent(jLabel5)
+                .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtDireccion2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
@@ -131,9 +147,9 @@ public class Inicio extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtPuerto2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
-                .addGap(34, 34, 34)
+                .addGap(18, 18, 18)
                 .addComponent(btnConectar)
-                .addContainerGap(70, Short.MAX_VALUE))
+                .addContainerGap(47, Short.MAX_VALUE))
         );
 
         pack();
@@ -181,16 +197,11 @@ public class Inicio extends javax.swing.JFrame {
            UtilidadesRegistroS.RegistrarObjetoRemoto(objRemotoUsuario, direccionIpRMIRegistry, numPuertoRMIRegistry, "objRemotoUsuario");           
            
            //Admin
-           //UtilidadesRegistroS.arrancarNS(numPuertoRMIRegistry);
            UtilidadesRegistroS.RegistrarObjetoRemoto(objRemotoAdminCA, direccionIpRMIRegistry, numPuertoRMIRegistry, "objRemotoAdminCA");           
            
            //Listar
-           //UtilidadesRegistroS.arrancarNS(numPuertoRMIRegistry);
            UtilidadesRegistroS.RegistrarObjetoRemoto(objRemotoListar, direccionIpRMIRegistry, numPuertoRMIRegistry, "ObjRemotoListar");           
            
-           //Callback
-           //UtilidadesRegistroS.arrancarNS(numPuertoRMIRegistry);
-           //UtilidadesRegistroS.RegistrarObjetoRemoto(objRemotoCallback, direccionIpRMIRegistry, numPuertoRMIRegistry, "ObjRemotoCallback");           
       
 	    } catch (Exception e)
         {
@@ -201,19 +212,6 @@ public class Inicio extends javax.swing.JFrame {
         ob1.setVisible(true);
         dispose();
         
-        /*
-         int numPuertoRMIRegistry = 0;
-         String direccionIpRMIRegistry = "";  
-        
-         numPuertoRMIRegistry = (Integer.parseInt(this.NumPuerto.getText()));
-         direccionIpRMIRegistry = this.DireccionIp.getText();
-         
-          objRemoto = (TurnoInt) UtilidadesRegistroC.obtenerObjRemoto(numPuertoRMIRegistry, direccionIpRMIRegistry, "ObjetoRemotoUsuarios");
-          */
-         
-       /* JFrameDocenteCatedra ob1 = new JFrameDocenteCatedra();
-        ob1.setVisible(true);
-        dispose();*/
     }//GEN-LAST:event_btnConectarActionPerformed
 
     private void DireccionIpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DireccionIpActionPerformed
@@ -282,6 +280,8 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JTextField txtDireccion2;
     private javax.swing.JTextField txtPuerto2;
     // End of variables declaration//GEN-END:variables

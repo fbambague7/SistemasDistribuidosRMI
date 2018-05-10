@@ -114,28 +114,12 @@ public class Inicio extends javax.swing.JFrame {
         objRemotoAdminCA = (administradorCAint) UtilidadesRegistroC.ObtenerObjRemoto(numPuertoRMIRegistry, direccionIpRMIRegistry, "objRemotoAdminCA");
         
         
-        //objeto remoto Interfas Listar
-        //numPuertoRMIRegistry = (Integer.parseInt(this.NumPuerto.getText()));
-        //direccionIpRMIRegistry = this.DireccionIp.getText();
         objRemotoListar = (listarUsuariosInt) UtilidadesRegistroC.ObtenerObjRemoto(numPuertoRMIRegistry, direccionIpRMIRegistry, "ObjRemotoListar");
         
-        //objRemotoCallback = (CallbackInt) UtilidadesRegistroC.ObtenerObjRemoto(numPuertoRMIRegistry, direccionIpRMIRegistry, "ObjRemotoCallback");
-          
         
         JFrameAdminCA ob1 = new JFrameAdminCA(objRemotoAdminCA);
         ob1.setVisible(true);
         dispose();
-        
-        
-        /*try{
-        JFrameAdminCAListar ob1 = new JFrameAdminCAListar(/*objRemotoListar*//*);
-                    ob1.setVisible(true);
-                    dispose();
-                    
-                    
-        } catch (RemoteException ex) {
-            Logger.getLogger(JFrameAdminCA.class.getName()).log(Level.SEVERE, null, ex);
-        }*/
         
     }//GEN-LAST:event_btnConectarActionPerformed
 

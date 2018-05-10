@@ -33,9 +33,7 @@ public class JFrameAdminGU extends javax.swing.JFrame {
     public JFrameAdminGU(administradorGUint objRemoto) {
         this.objRemotoGU = objRemoto;
         initComponents();
-        //iniciar();
-
-        //String nombreDireccion = "C:\\Users\\PC-USUARIO\\Documents\\NetBeansProjects\\EjemploFichero\\src\\archivos\\Administrador.txt";//"C:\\Users\\PC-USUARIO\\Desktop\\DocenteCatedra.txt";
+        
     }
 
     /**
@@ -57,6 +55,7 @@ public class JFrameAdminGU extends javax.swing.JFrame {
         txtLog = new javax.swing.JTextField();
         txtClave = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
+        btnMod = new javax.swing.JButton();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -95,6 +94,13 @@ public class JFrameAdminGU extends javax.swing.JFrame {
 
         jLabel3.setText("ADMINISTRADOR GESTION USUARIO");
 
+        btnMod.setText("Modificar");
+        btnMod.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -106,7 +112,10 @@ public class JFrameAdminGU extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblCal2)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(btnIngresar)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(btnMod)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(btnIngresar))
                                 .addGroup(layout.createSequentialGroup()
                                     .addComponent(lblCal1)
                                     .addGap(76, 76, 76)
@@ -143,7 +152,9 @@ public class JFrameAdminGU extends javax.swing.JFrame {
                     .addComponent(lblCal2)
                     .addComponent(txtClave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(29, 29, 29)
-                .addComponent(btnIngresar)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnIngresar)
+                    .addComponent(btnMod))
                 .addGap(26, 26, 26)
                 .addComponent(btnVolver)
                 .addGap(78, 78, 78))
@@ -184,10 +195,7 @@ public class JFrameAdminGU extends javax.swing.JFrame {
                 if (indAcceso == false) {
                     JOptionPane.showMessageDialog(null, "¡Login o Password Incorrectos!");
                 } else {
-                    /*int numPuertoRMIRegistry = 2020;
-                String direccionIpRMIRegistry = "localhost";
-                objRemotoListar = (listarUsuariosInt) UtilidadesRegistroC.ObtenerObjRemoto(numPuertoRMIRegistry, direccionIpRMIRegistry, "ObjRemotoListar");
-                     */
+        
                     JFrameAdminCAGestion ob1 = new JFrameAdminCAGestion(/*objRemotoListar*/);
                     ob1.setVisible(true);
                     dispose();
@@ -200,6 +208,12 @@ public class JFrameAdminGU extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_btnIngresarActionPerformed
+
+    private void btnModActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModActionPerformed
+        JFrameModificar obMod = new JFrameModificar(objRemotoGU);
+        obMod.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btnModActionPerformed
 
     public boolean validarIngreso(String login, String clave) {
         boolean validar = false;
@@ -1279,6 +1293,7 @@ public class JFrameAdminGU extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnIngresar;
+    private javax.swing.JButton btnMod;
     private javax.swing.JButton btnVolver;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane2;

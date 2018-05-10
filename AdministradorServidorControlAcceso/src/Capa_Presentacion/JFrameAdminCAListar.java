@@ -22,9 +22,6 @@ import Capa_Servicios.UtilidadesRegistroC;
  */
 public class JFrameAdminCAListar extends javax.swing.JFrame {
 
-    /**
-     * Creates new form JFrameDocente
-     */
     public static listarUsuariosInt objRemotoListar;
     ArrayList<UsuarioAccesoInstalacionesDTO> usuariosAcceso;
     ArrayList<UsuarioAccesoInstalacionesDTO> usuariosNoAcceso;
@@ -226,36 +223,13 @@ public class JFrameAdminCAListar extends javax.swing.JFrame {
            "Codigo","Area","Hora Peticion","Fecha Peticion"
        }));
        
-        contarUsuarios(usuarios.size());
-       
-        /*
-        String matriz[][]=new String[usuariosAcceso.size()][5];
-        
-        System.out.println("------------>"+usuariosAcceso.size());
-        
-       for(int i=0;i<usuariosAcceso.size();i++)
-        {
-            matriz[i][0]=usuariosAcceso.get(i).getCodigo();
-            //matriz[i][1]=usuariosAcceso.get(i).getArea();
-            matriz[i][2]=usuariosAcceso.get(i).getHoraEntrada();
-            matriz[i][3]=usuariosAcceso.get(i).getFechaEntrada();
-            
-        }
-       tblInfo.setModel(new javax.swing.table.DefaultTableModel(
-       matriz,
-       new String []{
-           "Codigo","Area","Hora Peticion","Fecha Peticion"
-       }));
-        
-        */
-        
+        contarUsuarios(usuarios.size());  
     }
     
     public void contarUsuarios(int numero){
         lblMensaje.setText("Cantidad de Usuarios: "+numero);
     }
 
-    
     public void iniciar() {
         /*
         while(true){

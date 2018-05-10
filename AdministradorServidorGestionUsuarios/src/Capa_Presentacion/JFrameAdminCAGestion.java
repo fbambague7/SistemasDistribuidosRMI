@@ -20,24 +20,14 @@ import Capa_Negocio.sop_rmi.*;
  */
 public class JFrameAdminCAGestion extends javax.swing.JFrame {
 
-    /**
-     * Creates new form JFrameDocente
-     */
-    //public static gestionUsuariosInt objRemotoGestion;
-    /*
-    ArrayList<UsuarioAccesoInstalacionesDTO> usuariosAcceso = new ArrayList<UsuarioAccesoInstalacionesDTO>();
-    ArrayList<UsuarioAccesoInstalacionesDTO> usuariosNoAcceso = new ArrayList<UsuarioAccesoInstalacionesDTO>();
-     */
     UsuarioDTO usuario;
 
     private static Inicio nuevo = new Inicio();
 
     public JFrameAdminCAGestion(/*UsuarioInt objRemotoGestion*/) {
-        //this.objRemoto = objRemoto;
-        initComponents();
-        //iniciar();
 
-        //String nombreDireccion = "C:\\Users\\PC-USUARIO\\Documents\\NetBeansProjects\\EjemploFichero\\src\\archivos\\Administrador.txt";//"C:\\Users\\PC-USUARIO\\Desktop\\DocenteCatedra.txt";
+        initComponents();
+
     }
 
     /**
@@ -237,27 +227,17 @@ public class JFrameAdminCAGestion extends javax.swing.JFrame {
             txtNom.setText(miUsuario.getNombres());
             cbrol.setSelectedItem(miUsuario.getRol().toString());
             //txtrol.setText(miUsuario.getRol().toString());
-            
+
             if (miUsuario != null) {
-            JOptionPane.showMessageDialog(null, "¡Usuario encontrado");
+                JOptionPane.showMessageDialog(null, "¡Usuario encontrado");
             } else {
                 JOptionPane.showMessageDialog(null, "¡Usuario NO encontrado");
             }
-        
-        } catch (RemoteException ex) {
-            Logger.getLogger(JFrameAdminCAGestion.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
 
-        /*
-        try {
-            usuariosAcceso.addAll(nuevo.objRemotoListar.listarUsuariosAcceso());
-            
         } catch (RemoteException ex) {
             Logger.getLogger(JFrameAdminCAGestion.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-         */
+
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
@@ -351,22 +331,20 @@ public class JFrameAdminCAGestion extends javax.swing.JFrame {
                 if (opcion == 0) {
                     indEliminar = nuevo.objRemotoGestion.eliminarUsuario(codigo);
                 } else {
-                    
+
                 }
 
             }
 
             //indEliminar = nuevo.objRemotoGestion.eliminarUsuario(codigo);
-            
             if (indEliminar == true) {
-            JOptionPane.showMessageDialog(null, "¡Usuario Eliminado");
+                JOptionPane.showMessageDialog(null, "¡Usuario Eliminado");
             } else {
                 JOptionPane.showMessageDialog(null, "¡Usuario NO Eliminado");
             }
         } catch (RemoteException ex) {
             Logger.getLogger(JFrameAdminCAGestion.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
 
         txtCod.setText("");
         txtCod.setText("");
