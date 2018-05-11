@@ -220,18 +220,23 @@ public class JFrameAdminCAGestion extends javax.swing.JFrame {
         String codigo = txtCod.getText();
         UsuarioDTO miUsuario = null;
         try {
-            miUsuario = nuevo.objRemotoGestion.consultarUsuario(codigo);
-            cbArea.setSelectedItem(miUsuario.getArea().toString());
-            //txtArea.setText(miUsuario.getArea().toString());
-            txtCla.setText(miUsuario.getClave());
-            txtNom.setText(miUsuario.getNombres());
-            cbrol.setSelectedItem(miUsuario.getRol().toString());
-            //txtrol.setText(miUsuario.getRol().toString());
+            if(codigo.equals("")){
+                JOptionPane.showMessageDialog(null, "¡Digite Codigo a Buscar");
+            }else{                
+                miUsuario = nuevo.objRemotoGestion.consultarUsuario(codigo);
+                cbArea.setSelectedItem(miUsuario.getArea().toString());
+                //txtArea.setText(miUsuario.getArea().toString());
+                txtCla.setText(miUsuario.getClave());
+                txtNom.setText(miUsuario.getNombres());
+                cbrol.setSelectedItem(miUsuario.getRol().toString());
+                //txtrol.setText(miUsuario.getRol().toString());
 
-            if (miUsuario != null) {
-                JOptionPane.showMessageDialog(null, "¡Usuario encontrado");
-            } else {
-                JOptionPane.showMessageDialog(null, "¡Usuario NO encontrado");
+                if (miUsuario == null) {
+                    JOptionPane.showMessageDialog(null, "¡Usuario NO encontrado");
+
+                } else {
+                    JOptionPane.showMessageDialog(null, "¡Usuario encontrado");
+                }
             }
 
         } catch (RemoteException ex) {
@@ -319,28 +324,28 @@ public class JFrameAdminCAGestion extends javax.swing.JFrame {
         UsuarioDTO miUsuario = null;
 
         try {
-            miUsuario = nuevo.objRemotoGestion.consultarUsuario(codigo);
+            if(codigo.equals("")){
+                JOptionPane.showMessageDialog(null, "¡Digite Codigo a Eliminar");
+            }else{                
+                miUsuario = nuevo.objRemotoGestion.consultarUsuario(codigo);
 
-            if (miUsuario == null) {
-                JOptionPane.showMessageDialog(null, "¡Usuario No encontrado");
-            } else {
-                //JOptionPane.showMessageDialog(null, "¡Usuario encontrado, Desea eliminarlo?");
-
-                int opcion = JOptionPane.showConfirmDialog(null, "¡Usuario encontrado, Desea eliminarlo?", "Aviso", JOptionPane.YES_NO_OPTION);
-
-                if (opcion == 0) {
-                    indEliminar = nuevo.objRemotoGestion.eliminarUsuario(codigo);
+                if (miUsuario == null) {
+                    JOptionPane.showMessageDialog(null, "¡Usuario No encontrado");
                 } else {
+                    //JOptionPane.showMessageDialog(null, "¡Usuario encontrado, Desea eliminarlo?");
+                    int opcion = JOptionPane.showConfirmDialog(null, "¡Usuario encontrado, Desea eliminarlo?", "Aviso", JOptionPane.YES_NO_OPTION);
 
+                    if (opcion == 0) {
+                        indEliminar = nuevo.objRemotoGestion.eliminarUsuario(codigo);
+                    } else {}
                 }
 
-            }
-
-            //indEliminar = nuevo.objRemotoGestion.eliminarUsuario(codigo);
-            if (indEliminar == true) {
-                JOptionPane.showMessageDialog(null, "¡Usuario Eliminado");
-            } else {
-                JOptionPane.showMessageDialog(null, "¡Usuario NO Eliminado");
+                //indEliminar = nuevo.objRemotoGestion.eliminarUsuario(codigo);
+                if (indEliminar == true) {
+                    JOptionPane.showMessageDialog(null, "¡Usuario Eliminado");
+                } else {
+                    JOptionPane.showMessageDialog(null, "¡Usuario NO Eliminado");
+                }
             }
         } catch (RemoteException ex) {
             Logger.getLogger(JFrameAdminCAGestion.class.getName()).log(Level.SEVERE, null, ex);
@@ -371,9 +376,9 @@ public class JFrameAdminCAGestion extends javax.swing.JFrame {
         indCod = validarCodigo(codigo);
 
         if (indCod == false) {
-            JOptionPane.showMessageDialog(null, "¡El Codigo debe estar entre 4 y 8 caracteres!");
+            JOptionPane.showMessageDialog(null, "¡El Codigo debe estar entre 4 y 8 caracteres!\n"
+                    + "Puede verificar si el usuario existe dando click en Buscar!");
         } else {
-
             switch (areatxt) {
                 case "norte":
                     area = EnumArea.norte;

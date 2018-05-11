@@ -211,12 +211,14 @@ public class JFrameUsuario extends javax.swing.JFrame {
 
                 UsuarioDTO usuario;
                 usuario = objRemotoUsuario.solicitarAcceso(codigo, clave, area);
-
-                if (usuario == null
-                        || (!clave.equalsIgnoreCase(usuario.getClave()) && !codigo.equalsIgnoreCase(usuario.getCodigo()))) {
+                
+                if (usuario == null){
                     JOptionPane.showMessageDialog(null, "¡Acceso denegado código o clave inválidos, "
                             + "por favor contacte al administrador de la aplicación!");
-                } else if (!area.equalsIgnoreCase(usuario.getArea().toString())) {
+                }else if(!clave.equalsIgnoreCase(usuario.getClave()) || !codigo.equalsIgnoreCase(usuario.getCodigo())) {
+                    JOptionPane.showMessageDialog(null, "¡Acceso denegado código o clave inválidos, "
+                            + "por favor contacte al administrador de la aplicación!");
+                }else if (!area.equalsIgnoreCase(usuario.getArea().toString())) {
                     JOptionPane.showMessageDialog(null, "¡Acceso Al area " + area + " denegada \n"
                             + usuario.getRol() + "\n" + usuario.getNombres());
                     objRemotoUsuario.guardarArchivo(codigo, area, false);
@@ -239,7 +241,9 @@ public class JFrameUsuario extends javax.swing.JFrame {
     }//GEN-LAST:event_cbAreaActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
-        // TODO add your handling code here:
+        txtClave.setText("");
+        txtCod.setText("");
+        JOptionPane.showMessageDialog(null, "Gracias");
     }//GEN-LAST:event_btnSalirActionPerformed
 
     public boolean validarCodigo(String codigo) {

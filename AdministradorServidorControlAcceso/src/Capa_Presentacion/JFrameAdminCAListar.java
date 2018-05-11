@@ -162,9 +162,9 @@ public class JFrameAdminCAListar extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(btnNoApr))
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(lblMensaje)
-                .addGap(24, 24, 24)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
                 .addComponent(btnVolver)
                 .addGap(27, 27, 27))
         );
@@ -242,7 +242,7 @@ public class JFrameAdminCAListar extends javax.swing.JFrame {
     {
         //System.out.println(mensaje);
         JOptionPane.showMessageDialog(null, mensaje);
-        //lblMensaje.setText(mensaje);
+        //lblCallback.setText(mensaje);
     }    
 
     /**

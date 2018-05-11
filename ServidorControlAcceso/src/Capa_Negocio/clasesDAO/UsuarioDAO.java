@@ -33,11 +33,8 @@ public class UsuarioDAO {
 
     public boolean solicitar(String codigo, String area, boolean acceso) throws IOException {
         boolean dentro = false;
-        ArrayList<String> datosArc = new ArrayList<>();
-        datosArc = new ArrayList<>();
         String path = "";
         String datos = "";
-        
 
         if (acceso == true) {
             path = "../src/Capa_Acceso/solicitudes/solicitudesDeAcceso.txt";
@@ -45,40 +42,18 @@ public class UsuarioDAO {
             path = "../src/Capa_Acceso/solicitudes/solicitudesDeNoAcceso.txt";
         }
 
-        archivo.abrirArchivo(path, false, false);
-        while (archivo.puedeLeer()) {
-            datos = archivo.leerArchivo();
-            String[] partes = datos.split("\n");
-            
-            if (partes != null) {
-                
-                for (int i = 0; i < partes.length; i++) {
-                    
-                    datosArc.add(partes[i]);
-                }
-            }
-        }
-        archivo.cerrarArchivo();
         archivo.abrirArchivo(path,true,true);
         String nuevo = "";
         try {
                 Calendar calendario = new GregorianCalendar();
 
                     nuevo = codigo + "_" + area + "_" + calendario.get(Calendar.HOUR) + "_" + calendario.get(Calendar.DAY_OF_MONTH)
-                            + " de " + getMes(calendario.get(Calendar.MONTH)) + " de " + calendario.get(Calendar.YEAR) + nuevo;
+                            + " de " + getMes(calendario.get(Calendar.MONTH)) + " de " + calendario.get(Calendar.YEAR);
 
-                    datosArc.add(nuevo);
-            
-                    /*
-                    for (int i = 0; i < datosArc.size(); i++) {
-                        archivo.escribirArchivo(datosArc.get(i));
-                    } 
-                    */
                     archivo.escribirArchivo(nuevo);
                     archivo.cerrarArchivo();
 
                 dentro = true;
-
 
         } catch (Exception e) {
             System.out.println("ERROR! Se ha producido un error al crear el archivo " + e.getMessage());
@@ -94,7 +69,6 @@ public class UsuarioDAO {
 
         try {
             archivo.abrirArchivo("../src/Capa_Acceso/solicitudes/solicitudesDeAcceso.txt", false, false);
-            //String path = "../src/acceso/archivos/solicitudes/solicitudesDeAcceso_" + codigo + ".txt";
             while (archivo.puedeLeer()) {
                 String datos = archivo.leerArchivo();
                 String[] partes = datos.split("_");
